@@ -1,0 +1,1 @@
+-> Comprimido ZIP "appProyecto_BK_cero" es una copia del proyecto creado desde cero sin Entidades ni Componentes.
