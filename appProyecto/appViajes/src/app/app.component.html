@@ -2,6 +2,52 @@
   <!-- COMPONENTE HEADER FIJO -->
   <!-- el nav cambiara el contenido del main -->
   <!-- pinchar en muñeco FIJO y que cambie el main por COMPONENTE INFO USUARIO  -->
+  <nav class="navbar navbar-expand  border-bottom">
+    <div class="container-fluid ">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-start">
+        <img src="../assets/img/viaje2-removebg-preview.png" alt="LOGO_TRAVEL" width="120" height="100">
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+        <h1 class="text-center">Travel 360</h1>
+      </div>
+      <!-- IF PARA SI HA INICIADO SESION: -->
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2 p-2 mt-1">Mi cuenta</button>
+        <button type="button" class="btn btn-primary p-2 mt-1">Crear Cuenta</button>
+      </div>
+      <!-- si se ha iniciado sesion: -->
+      <!-- <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2 p-2 mt-1">Usuario</button>
+        <button type="button" class="btn btn-primary p-2 mt-1">Cerrar Sesion</button>
+      </div> -->
+    </div>
+  </nav>
+  <!-- <nav class="navbar navbar-expand-sm navbar-light bg-light"> -> POSIBILIDAD DE HACER MOD OSCURO/CLARO -->
+  <nav class="navbar navbar-expand-sm ">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto" id="nav-hover-2">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Experiencias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Añadir</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Buscar.." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 </header>
 <main>
   <!-- APARECE UNO DE LOS 3 <router-outlet></router-outlet> -->
@@ -18,5 +64,5 @@
 </main>
 <footer>
   <!-- COMPONENTE FOOTER FIJO -->
-
+  
 </footer>
