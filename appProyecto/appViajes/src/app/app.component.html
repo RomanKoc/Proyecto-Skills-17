@@ -12,14 +12,18 @@
       </div>
       <!-- IF PARA SI HA INICIADO SESION: -->
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Mi cuenta</button>
-        <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Crear Cuenta</button>
+        <a class="nav-link " aria-current="page" href="login">
+          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Mi cuenta</button></a>
+        <a class="nav-link " aria-current="page" href="registro">
+          <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Crear Cuenta</button></a>
       </div>
       <!-- si se ha iniciado sesion: -->
-      <!-- <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Usuario</button>
-        <button type="button" class="btn btn-primary m3-1 p-1 mt-1">Cerrar Sesion</button>
-      </div> -->
+      <!-- 
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+        <a class="nav-link " aria-current="page" href="info-usuario">
+          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Usuario</button></a>
+        <a class="nav-link " aria-current="page" href="salir?¿?">
+          <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Cerrar Sesion</button></a> -->
     </div>
   </nav>
   <nav class="navbar navbar-expand-sm ">
@@ -31,13 +35,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto" id="nav-hover-2">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Inicio</a>
+            <a class="nav-link " aria-current="page" href="bienvenida">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Experiencias</a>
+            <a class="nav-link" aria-current="page" href="experiencias">Experiencias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Añadir</a>
+            <a class="nav-link" aria-current="page" href="experiencia-nueva">Añadir</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -49,6 +53,7 @@
   </nav>
 </header>
 <main>
+  <router-outlet></router-outlet>
   <!-- APARECE UNO DE LOS 3 <router-outlet></router-outlet> -->
   <!-- COMPONENTE INFO / LOGIN / REGISTRO -->
   <!-- ------------------ -->
@@ -98,7 +103,7 @@
                       <h5 class="modal-title" id="exampleModalLabel">Politica de Privacidad</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body"> 
+                    <div class="modal-body">
                       Última actualización: Lunes, 26 de Febrero de 2024.
                       <br>
                       <strong>Adri&Roman S.A.</strong> te informa sobre nuestras políticas con respecto a la
