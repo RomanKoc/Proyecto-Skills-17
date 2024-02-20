@@ -21,7 +21,7 @@ class UsuarioType extends AbstractType
             ->add('password')
             ->add('rol', EntityType::class, [
                 'class' => Rol::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
         ;
     }

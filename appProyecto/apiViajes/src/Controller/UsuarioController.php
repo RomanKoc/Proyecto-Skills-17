@@ -84,7 +84,7 @@ class UsuarioController extends AbstractController
     {
         
         $data = json_decode($request->getContent(), true);
-
+        //ORIGINAL
         // Crear una nueva instancia de Usuario y asignar los datos recibidos
         $usuario = new Usuario();
         $usuario->setNombre($data['nombre']);
@@ -103,6 +103,38 @@ class UsuarioController extends AbstractController
 
         return new JsonResponse(['message' => 'Usuario insertado correctamente'], Response::HTTP_CREATED);
     }
+    /* #[Route('/new', name: 'app_usuario_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        try {
+            $data = json_decode($request->getContent(), true);
+
+            // Verificar si todos los campos requeridos están presentes
+            if (!isset($data['nombre'], $data['apellidos'], $data['mail'], $data['ciudad'], $data['password'])) {
+                throw new \InvalidArgumentException('Faltan datos requeridos');
+            }
+
+            // Crear una nueva instancia de Usuario y asignar los datos recibidos
+            $usuario = new Usuario();
+            $usuario->setNombre($data['nombre']);
+            $usuario->setApellidos($data['apellidos']);
+            $usuario->setMail($data['mail']);
+            $usuario->setCiudad($data['ciudad']);
+            $usuario->setPassword($data['password']);
+
+            $rolPorDefecto = $entityManager->getReference('App\Entity\Rol', 2);
+            $usuario->setRol($rolPorDefecto);
+
+            // Guardar el nuevo usuario en la base de datos
+            $entityManager->persist($usuario);
+            $entityManager->flush();
+
+            return new JsonResponse(['message' => 'Usuario insertado correctamente'], Response::HTTP_CREATED);
+        } catch (\Throwable $e) {
+            return new JsonResponse(['error' => $e->getMessage(), $request->getContent()]);
+        }
+    } */
+
 
     #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
     public function show(Usuario $usuario): Response

@@ -19,8 +19,8 @@ export class RegistroComponent {
     nombre: new FormControl(''),
     apellidos: new FormControl(''),
     mail: new FormControl(''),
-    password: new FormControl(''),
     ciudad: new FormControl(''),
+    password: new FormControl(''),
   });
 
   encriptarPasswd() {
@@ -33,16 +33,23 @@ export class RegistroComponent {
   }
   registrarUsuario() {
     this.encriptarPasswd();
-    this.usuarioService.insertarUsuario(this.formularioRegistro.value)
-      .subscribe(
-        (response) => {
+    const usuario = {
+      nombre: this.formularioRegistro.value.nombre,
+      apellidos: this.formularioRegistro.value.apellidos,
+      mail: this.formularioRegistro.value.mail,
+      ciudad: this.formularioRegistro.value.ciudad,
+      password: this.formularioRegistro.value.password
+    };
+    this.usuarioService.insertarUsuario(usuario)
+      .subscribe({
+        next: (response) => {
           console.log('Usuario insertado correctamente:', response);
-          // Aquí puedes redirigir a otra página o mostrar un mensaje de éxito
         },
-        (error) => {
+        error: (error) => {
           console.error('Error al insertar usuario:', error);
-          // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje de error al usuario
         }
-      );
+      });
+
+      this.formularioRegistro.reset();
   }
 }
