@@ -11,6 +11,6 @@ export class ApiPruebaService {
     return this.http.get('http://127.0.0.1:8000/usuario/') // recupera un archivo JSON
   }
   insertarUsuario(usuario: any) {
-    return this.http.post('http://tu-servidor.com/api/usuarios', usuario);
+    return this.http.post('http://127.0.0.1:8000/usuario/new', usuario);
   }
 }

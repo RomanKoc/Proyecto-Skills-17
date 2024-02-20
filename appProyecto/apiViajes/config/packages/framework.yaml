@@ -8,11 +8,6 @@ framework:
 
     #esi: true
     #fragments: true
-      cors:
-        allow_origin: ['http://localhost:4200'] # Reemplaza localhost:4200 con el origen de tu aplicación Angular
-        allow_methods: ['POST', 'GET', 'PUT', 'DELETE']
-        allow_headers: ['Content-Type', 'Authorization']
-        max_age: 3600
 
 when@test:
     framework:
