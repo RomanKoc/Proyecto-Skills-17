@@ -3,41 +3,40 @@
         <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
     </div>
 
-    <form method="post">
+    <form [formGroup]="formularioRegistro" (ngSubmit)="registrarUsuario()">
         <h3>Registrarse</h3>
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center ">
                 <div class="form-floating col-9 col-md-7">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre">
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
                     <label for="floatingInput">Nombre</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="Email">
-                    <label for="floatingInput">Apellido</label>
+                    <input type="email" class="form-control" placeholder="Apellido" formControlName="apellidos">
+                    <label for="floatingInput">Apellidos</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" id="floatingPassword"
-                        placeholder="name@example.com">
+                    <input type="email" class="form-control" placeholder="name@example.com" formControlName="mail">
                     <label for="floatingPassword">Correo</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password">
                     <label for="floatingPassword">Contraseña</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="text" class="form-control" id="floatingPassword" placeholder="ciudad">
+                    <input type="text" class="form-control" placeholder="ciudad" formControlName="ciudad">
                     <label for="floatingPassword">Ciudad</label>
                 </div>
             </div>

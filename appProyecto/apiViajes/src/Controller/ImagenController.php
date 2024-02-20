@@ -10,16 +10,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/imagen')]
 class ImagenController extends AbstractController
 {
-    #[Route('/', name: 'app_imagen_index', methods: ['GET'])]
+    /* #[Route('/', name: 'app_imagen_index', methods: ['GET'])]
     public function index(ImagenRepository $imagenRepository): Response
     {
         return $this->render('imagen/index.html.twig', [
             'imagens' => $imagenRepository->findAll(),
         ]);
+    } */
+    #[Route('/', name: 'app_imagen_index', methods: ['GET'])]
+    public function index(ImagenRepository $imagenRepository): JsonResponse
+    {
+        // Obtener todas las imágenes desde el repositorio
+        $imagenes = $imagenRepository->findAll();
+
+        $imagenesArray = [];
+        foreach ($imagenes as $imagen) {
+            $imagenesArray[] = [
+                'id' => $imagen->getId(),
+                'nombre' => base64_encode(stream_get_contents($imagen->getNombre())), // Convertir el BLOB a base64
+                'experiencia_id' => $imagen->getExperiencia(),
+                /* 'experiencia_id' => $imagen->getExperiencia()->getId(), */
+                /* 'experiencia_nombre' => $imagen->getExperiencia()->getTitulo(), */
+            ];
+        }
+
+        // Devolver los datos como respuesta JSON
+        return new JsonResponse($imagenesArray);
     }
 
     #[Route('/new', name: 'app_imagen_new', methods: ['GET', 'POST'])]
@@ -71,7 +92,7 @@ class ImagenController extends AbstractController
     #[Route('/{id}', name: 'app_imagen_delete', methods: ['POST'])]
     public function delete(Request $request, Imagen $imagen, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$imagen->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $imagen->getId(), $request->request->get('_token'))) {
             $entityManager->remove($imagen);
             $entityManager->flush();
         }
