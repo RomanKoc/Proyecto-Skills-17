@@ -44,10 +44,14 @@ class Experiencia
     #[ORM\OneToMany(targetEntity: Comentario::class, mappedBy: 'experiencia')]
     private Collection $comentarios;
 
+    #[ORM\OneToMany(targetEntity: Imagen::class, mappedBy: 'experiencia')]
+    private Collection $imagens;
+
     public function __construct()
     {
         $this->imagen = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->imagens = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,5 +201,13 @@ class Experiencia
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Imagen>
+     */
+    public function getImagens(): Collection
+    {
+        return $this->imagens;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImagenRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImagenRepository::class)]
@@ -13,10 +14,10 @@ class Imagen
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
-    private ?string $nombre = null;
+    #[ORM\Column(type: Types::BLOB)]
+    private $nombre = null;
 
-    #[ORM\ManyToOne(inversedBy: 'imagen')]
+    #[ORM\ManyToOne(inversedBy: 'imagens')]
     private ?Experiencia $experiencia = null;
 
     public function getId(): ?int
@@ -24,12 +25,12 @@ class Imagen
         return $this->id;
     }
 
-    public function getNombre(): ?string
+    public function getNombre()
     {
         return $this->nombre;
     }
 
-    public function setNombre(?string $nombre): static
+    public function setNombre($nombre): static
     {
         $this->nombre = $nombre;
 
