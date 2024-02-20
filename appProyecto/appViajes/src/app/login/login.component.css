@@ -1,0 +1,22 @@
+.container.contact-form {
+    background-color: #ffd6d6;
+}
+ 
+.contact-image {
+    text-align: center;
+}
+ 
+.contact-image img {
+    border-radius: 6rem;
+    width: 12%;
+    transform: rotate(3deg);
+}
+ 
+ .contact-form{
+    border-radius:1rem;
+}
+ 
+.contact-form h3{
+    text-align: center;
+    color: #fc624d;
+}
