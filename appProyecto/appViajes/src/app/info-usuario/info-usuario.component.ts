@@ -26,7 +26,7 @@ export class InfoUsuarioComponent {
   constructor(private usuariosService: ApiPruebaService) {
     this.usuariosService.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         this.usuarios = result;
         this.usuarios.forEach((user: any) => {
           if (user.id == this.userId) {

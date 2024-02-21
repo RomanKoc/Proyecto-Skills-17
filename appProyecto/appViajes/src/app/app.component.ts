@@ -37,7 +37,7 @@ export class AppComponent {
   constructor(private usuariosService: ApiPruebaService, private router: Router) {
     this.usuariosService.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         this.usuarios = result;
         if (this.userId != 'not') {
           this.usuarios.forEach((user: any) => {

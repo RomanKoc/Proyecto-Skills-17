@@ -19,12 +19,12 @@ export class BienvenidaComponent {
   constructor(private usuarios: ApiPruebaService, private imagenesA: ApiImagenService) {
     this.usuarios.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         this.articulos = result
       });
     this.imagenesA.retornar()
       .subscribe((resultado: any) => { // Explicitly specify the type of 'resultado' parameter as 'any'
-        console.log('result -> ', resultado);
+        /* console.log('result -> ', resultado); */
         this.imagenes = resultado
         this.img = this.imagenes[0].nombre;
       });
