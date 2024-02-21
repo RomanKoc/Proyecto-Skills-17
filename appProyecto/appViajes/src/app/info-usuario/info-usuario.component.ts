@@ -13,16 +13,28 @@ export class InfoUsuarioComponent {
 
   userId = '0';
   usuario: any;
+  usuarios: any;
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('userId') ?? '0';
+    if (localStorage.getItem('userId')) {
+      this.userId = localStorage.getItem('userId') ?? '0';
+    } else {
+      this.userId = 'not';
+    }
   }
 
-  constructor(private usuarios: ApiPruebaService) {
-    this.usuarios.retornar()
+  constructor(private usuariosService: ApiPruebaService) {
+    this.usuariosService.retornar()
       .subscribe((result) => {
         console.log('result -> ', result);
-        this.usuario = result
+        this.usuarios = result;
+        this.usuarios.forEach((user: any) => {
+          if (user.id == this.userId) {
+            this.usuario = user;
+            return;
+          }
+        });
+
       });
   }
 }

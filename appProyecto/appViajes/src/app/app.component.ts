@@ -18,6 +18,7 @@ export class AppComponent {
   usuarios: any;
   usuario: any;
 
+  /* comprobar si hay sesion en storage */
   ngOnInit(): void {
     if (localStorage.getItem('userId')) {
       this.userId = localStorage.getItem('userId') ?? '0';
