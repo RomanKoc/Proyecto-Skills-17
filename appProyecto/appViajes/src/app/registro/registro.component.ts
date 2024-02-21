@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
+  tipoPasswd: string = 'password';
 
   constructor(private usuarioService: ApiPruebaService, private router: Router) { }
 
@@ -55,6 +56,9 @@ export class RegistroComponent {
         }
       });
 
-      this.formularioRegistro.reset();
+    this.formularioRegistro.reset();
+  }
+  mostrarPassw() {
+    this.tipoPasswd = (this.tipoPasswd === 'password') ? 'text' : 'password';
   }
 }

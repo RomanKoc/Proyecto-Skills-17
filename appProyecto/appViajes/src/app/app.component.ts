@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  userId = '0';
+  userId = 'not';
   usuarios: any;
   usuario: any;
 
@@ -47,5 +47,12 @@ export class AppComponent {
           });
         }
       });
+  }
+  /* si no tenemos iniciada la sesion desactivar un campo devolviendo false, si no true */
+  desactivarPorID() {
+    if (this.userId != 'not') {
+      return true;
+    }
+    return false;
   }
 }

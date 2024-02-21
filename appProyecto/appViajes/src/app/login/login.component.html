@@ -16,7 +16,7 @@
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="password" class="form-control"
+                    <input type="{{tipoPasswd}}" class="form-control"
                         placeholder="Contraseña" name="password" formControlName="password">
                     <label>Contraseña</label>
                 </div>
@@ -24,9 +24,8 @@
 
             <div class="col-md-12 d-flex justify-content-center">
                 <label class="passwd mt-1 col-9 col-md-7">
-                    <input type="checkbox" id="boton-ver" name="mostrarPassw"> Mostrar Contraseña 
+                    <input type="checkbox" id="boton-ver" name="mostrarPassw" (click)="mostrarPassw()"> Mostrar Contraseña 
                 </label>
-
             </div>
             
             <div class="col-md-12 d-flex justify-content-center">

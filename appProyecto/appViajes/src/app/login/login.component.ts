@@ -15,6 +15,8 @@ export class LoginComponent {
 
   id = 0;
   usuarios: any;
+  tipoPasswd: string = 'password';
+
 
   constructor(private usuarioService: ApiPruebaService, private router: Router) {
     this.usuarioService.retornar()
@@ -75,5 +77,9 @@ export class LoginComponent {
     this.encriptarPasswd();
     this.comprobarUsuario();
     this.formularioRegistro.reset();
+  }
+
+  mostrarPassw() {
+    this.tipoPasswd = (this.tipoPasswd === 'password') ? 'text' : 'password';
   }
 }

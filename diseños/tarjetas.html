@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="cssTarjeta.css">
+    <style>
+
+    </style>
+</head>
+<body>
+  <div class="container mt-3 d-flex">
+    <div class="card mb-3 col-12">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="seebensee-2384369-810x540.jpg" class="img-fluid rounded-start" alt="..." style="height: 15rem; width: 100%; margin: 1px; margin-top: 3%;">
+        </div>
+        
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Titulo Experiencia</h5>
+            <p class="card-text">La vida es como montar en bicicleta. Para mantener el equilibrio, debes seguir adelante. Atrévete a explorar nuevos horizontes, a desafiarte a ti mismo y a crecer en cada pedaleo. ¡Disfruta del viaje!</p>
+            <p class="card-text"><small class="text-muted">subcategoria -> localizacion</small></p>
+            <p class="card-text">Usuario<br><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text mt-5">Puntuación <i class="like-icon far fa-thumbs-up"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3 d-flex">
+    <div class="card mb-3 col-12">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="seebensee-2384369-810x540.jpg" class="img-fluid rounded-start" alt="..." style="height: 15rem; width: 100%; margin: 1px; margin-top: 3%;">
+        </div>
+  
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Titulo Experiencia</h5>
+            <p class="card-text">Texto Experiencia.</p>
+            <p class="card-text"><small class="text-muted">Viaje de subcategoria en localizacion</small></p>
+            <p class="card-text">Usuario<br><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text mt-5">Puntuación <i class="like-icon far fa-thumbs-up"></i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.like-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+            this.classList.toggle('liked');
+        });
+    });
+  </script>
+</body>
+</html>
