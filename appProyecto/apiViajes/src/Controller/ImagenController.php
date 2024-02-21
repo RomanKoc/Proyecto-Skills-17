@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\Experiencia;
 
 #[Route('/imagen')]
 class ImagenController extends AbstractController
@@ -30,16 +31,16 @@ class ImagenController extends AbstractController
 
         $imagenesArray = [];
         foreach ($imagenes as $imagen) {
+            $experiencia = $imagen->getExperiencia();
+            $experienciaId = $experiencia ? $experiencia->getId() : null;
+
             $imagenesArray[] = [
                 'id' => $imagen->getId(),
                 'nombre' => base64_encode(stream_get_contents($imagen->getNombre())), // Convertir el BLOB a base64
-                'experiencia_id' => $imagen->getExperiencia(),
-                /* 'experiencia_id' => $imagen->getExperiencia()->getId(), */
-                /* 'experiencia_nombre' => $imagen->getExperiencia()->getTitulo(), */
+                'experiencia_id' => $experienciaId,
             ];
         }
 
-        // Devolver los datos como respuesta JSON
         return new JsonResponse($imagenesArray);
     }
 

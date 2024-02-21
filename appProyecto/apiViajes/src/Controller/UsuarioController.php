@@ -24,7 +24,7 @@ class UsuarioController extends AbstractController
             'usuarios' => $usuarioRepository->findAll(),
         ]);
     } */
-    /* #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
+    #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
     public function index(UsuarioRepository $usuarioRepository): JsonResponse
     {
         $usuarios = $usuarioRepository->findAll();
@@ -44,8 +44,8 @@ class UsuarioController extends AbstractController
         }
 
         return new JsonResponse($usuariosArray);
-    } */
-    #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
+    }
+    /* #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
     public function index(UsuarioRepository $usuarioRepository, SerializerInterface $serializer): JsonResponse
     {
         $usuarios = $usuarioRepository->findAll();
@@ -57,7 +57,7 @@ class UsuarioController extends AbstractController
         ]);
 
         return new JsonResponse($jsonUsuarios, JsonResponse::HTTP_OK, [], true);
-    }
+    } */
 
     /* #[Route('/new', name: 'app_usuario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

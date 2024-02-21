@@ -57,21 +57,43 @@ export class LoginComponent {
         console.log('Usuario encontrado:', usuario);
         this.encriptarPasswd();
         const passwordDesencriptada = this.desencriptarPasswd(usuario.password);
-        /* desecriptar a string porque si no no compara y da error!!!!! */
+        
         if (this.formularioRegistro.value.password == passwordDesencriptada) {
           console.log('Usuario logeado correctamente');
           alert('Usuario logeado correctamente');
           this.id = usuario.id;
           localStorage.setItem('userId', this.id.toString());
-          /* this.router.navigate(['/']); */
+          
           this.router.navigate(['/']).then(() => {
             // Recargar la página
             window.location.reload();
+            return; // FALTABA ESTA MIERDA RETURN!!!!!
           });
         }
       }
     });
   }
+  /* comprobarUsuario() {
+    this.usuarios.forEach((usuario: any) => {
+      if (usuario.mail === this.formularioRegistro.value.mail) {
+        console.log('Usuario encontrado:', usuario);
+        const passwordEncriptada = CryptoJS.SHA256(this.formularioRegistro.value.password || '').toString();
+        if (usuario.password === passwordEncriptada) {
+          console.log('Usuario logeado correctamente');
+          alert('Usuario logeado correctamente');
+          this.id = usuario.id;
+          localStorage.setItem('userId', this.id.toString());
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        } else {
+          console.log('Contraseña incorrecta');
+          alert('Contraseña incorrecta');
+        }
+      }
+    });
+  } */
+
 
   iniciarSesion() {
     this.encriptarPasswd();

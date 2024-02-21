@@ -1,15 +1,21 @@
 <div id="contenedor">
+    @for (exp of experiencias; track exp.id) {
     <div class="card" style="width: 24rem;margin:1rem">
-        <img src="../../assets/img/seebensee-2384369-810x540.jpg" class="card-img-top" alt="...">
+        @for (img of imagenes; track $index) {
+        @if (img.experiencia_id == exp.id && $index == 1) { <!-- INDEX EN ANGULAR EMPIEZA EN 1 -->
+        <img src="data:image;base64,{{img.nombre}}" class="card-img-top" alt="...">
+        }
+        }
         <div class="card-body">
-            <h5 class="card-title">Titulo Experiencia</h5>
-            <p class="card-text">La vida es como montar en bicicleta. Para mantener el equilibrio, debes seguir
-                adelante. Atrévete a explorar nuevos horizontes, a desafiarte a ti mismo y a crecer en cada pedaleo.
-                ¡Disfruta del viaje!.</p>
-            <p class="card-text"><small class="text-muted">subcategoria -> localizacion</small></p>
-            <p class="card-text">Usuario<br><small class="text-muted">Last updated 3 mins ago</small></p>
-            <p class="card-text mt-4">Puntuación <i class="like-icon far fa-thumbs-up"></i></p>
-            <a href="experiencia-individual/{{1}}" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{exp.titulo}}</h5>
+            <p class="card-text">{{exp.texto}}</p>
+            <p class="card-text">{{exp.localizacion.nombre}}<br><small class="text-muted">
+                    {{exp.localizacion.provincia.nombre}} - {{exp.localizacion.provincia.comunidad.nombre}}
+                </small></p>
+            <p class="card-text">{{exp.usuario.nombre}}<br><small class="text-muted">{{exp.fecha}}</small></p>
+            <p class="card-text mt-4">{{exp.puntuacion}}<i class="like-icon far fa-thumbs-up"></i></p>
+            <a href="experiencia-individual/{{exp.id}}" class="btn btn-primary">Mas informacion</a>
         </div>
     </div>
+    }
 </div>
