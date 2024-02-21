@@ -3,8 +3,9 @@
     <div class="card" style="width: 24rem;margin:1rem">
         @for (img of imagenes; track $index) {
         @if (img.experiencia_id == exp.id && $index == 1) { <!-- INDEX EN ANGULAR EMPIEZA EN 1 -->
-        <img src="data:image;base64,{{img.nombre}}" class="card-img-top" alt="...">
+        <img src="data:image;base64,{{ obtenerPrimeraImagenPorExperiencia(exp.id).nombre }}" class="card-img-top" alt="..." style="max-width: 400px;max-height: 500px;">
         }
+
         }
         <div class="card-body">
             <h5 class="card-title">{{exp.titulo}}</h5>
@@ -19,3 +20,28 @@
     </div>
     }
 </div>
+<!-- VERSION 2 -->
+<!-- 
+<div id="contenedor">
+    @for (exp of experiencias; track exp.id) {
+    <div class="card" style="width: 24rem;margin:1rem">
+        
+        <div class="card-body">
+            <h5 class="card-title">{{exp.titulo}}</h5>
+            <p class="card-text">{{exp.texto}}</p>
+            <p class="card-text">{{exp.localizacion.nombre}}<br><small class="text-muted">
+                    {{exp.localizacion.provincia.nombre}} - {{exp.localizacion.provincia.comunidad.nombre}}
+                </small></p>
+            <p class="card-text">{{exp.usuario.nombre}}<br><small class="text-muted">{{exp.fecha}}</small></p>
+            <p class="card-text mt-4">{{exp.puntuacion}}<i class="like-icon far fa-thumbs-up"></i></p>
+           
+        </div>
+        @for (img of imagenes; track $index) {
+            @if (img.experiencia_id == exp.id && $index == 1) { 
+            <img src="data:image;base64,{{img.nombre}}" class="card-img-top" alt="..." style="max-width: 400px;max-height: 500px;">
+            }
+            }
+            <a href="experiencia-individual/{{exp.id}}" class="btn btn-primary">Mas informacion</a>
+    </div>
+    }
+</div> -->

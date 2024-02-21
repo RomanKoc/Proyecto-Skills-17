@@ -18,6 +18,10 @@ export class ExperienciasComponent {
   experiencias: any = [];
   imagenes: any = [];
 
+  obtenerPrimeraImagenPorExperiencia(experienciaId: number): any {
+    return this.imagenes.find((img:any) => img.experiencia_id === experienciaId);
+  }
+
   constructor(private router: Router, private experienciaServ: ExperienciasService,
     private apiImagen: ApiImagenService) {
 
@@ -35,11 +39,11 @@ export class ExperienciasComponent {
 
 
   }
-  /* prueba() {
+  prueba() {
     const id = 1;
     this.router.navigate(['/experiencia-nueva', id]).then(() => {
       window.location.reload();
     });
-  } */
+  }
 
 }
