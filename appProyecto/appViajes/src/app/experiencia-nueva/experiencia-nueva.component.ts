@@ -9,12 +9,10 @@ import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
   styleUrl: './experiencia-nueva.component.css'
 })
 export class ExperienciaNuevaComponent {
-
   formularioContacto = new FormGroup({
     /* esto esta mal arreglar */
     nombre: new FormControl(''),
     email: new FormControl(''),
     mensaje: new FormControl('')
   });
-
 }

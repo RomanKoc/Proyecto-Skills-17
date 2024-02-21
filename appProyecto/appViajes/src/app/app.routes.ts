@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { ExperienciasComponent } from './experiencias/experiencias.component';
-import { ExperienciaIndividualComponent } from './experiencias/experiencia-individual/experiencia-individual.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InfoUsuarioComponent } from './info-usuario/info-usuario.component';
+import { ExperienciaIndividualComponent } from './experiencia-individual/experiencia-individual.component';
+import { ExperienciaNuevaComponent } from './experiencia-nueva/experiencia-nueva.component';
 
 export const routes: Routes = [
     {
@@ -30,16 +31,15 @@ export const routes: Routes = [
     {
         path: 'experiencias',
         component: ExperienciasComponent,
-        children: [
-            {
-                path: ':experiencia-individual/:id',
-                component: ExperienciaIndividualComponent
-            },
-            {
-                path: ':experiencia-nueva', /* Creo que no hay que meter id, revisar */
-                component: ExperienciaIndividualComponent
-            },
-        ]
+
+    },
+    {
+        path: 'experiencia-individual/:id',
+        component: ExperienciaIndividualComponent
+    },
+    {
+        path: 'experiencia-nueva', /* Creo que no hay que meter id, revisar */
+        component: ExperienciaNuevaComponent
     },
     {
         path: '**',
