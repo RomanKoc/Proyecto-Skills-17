@@ -10,21 +10,32 @@
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
         <h1 class="text-center">Travel 360</h1>
       </div>
+      <p>ANTES DEL IF{{userId}}</p>
       <!-- IF PARA SI HA INICIADO SESION: -->
+      @if (userId == 'not') {
+      <p>NO EXITE</p>
+      <p>IF1{{userId}}</p>
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
         <a class="nav-link " aria-current="page" href="login">
           <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Mi cuenta</button></a>
         <a class="nav-link " aria-current="page" href="registro">
           <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Crear Cuenta</button></a>
       </div>
-      <!-- si se ha iniciado sesion: -->
-
-      <!-- <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
+      
+      } @else {
+      <p>EXITE</p>
+      <p>IF2{{userId}}</p>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
         <a class="nav-link " aria-current="page" href="info-usuario">
           <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Usuario</button></a>
         <a class="nav-link " aria-current="page" href="salir?¿?">
-          <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Cerrar Sesion</button></a>
-      </div> -->
+          <button type="button" class="btn btn-primary  me-1 p-1 mt-1" (click)="cerrarSesion()">Cerrar
+            Sesion</button></a>
+      </div>
+      }
+      <!-- si se ha iniciado sesion: -->
+
+      <!--  -->
     </div>
   </nav>
   <nav class="navbar navbar-expand-sm ">

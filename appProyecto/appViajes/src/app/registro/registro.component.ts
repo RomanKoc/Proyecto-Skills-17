@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiPruebaService } from '../api-prueba.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import * as CryptoJS from 'crypto-js'; // Importar crypto-js
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import * as CryptoJS from 'crypto-js'; // Importar crypto-js
 })
 export class RegistroComponent {
 
-  constructor(private usuarioService: ApiPruebaService) { }
+  constructor(private usuarioService: ApiPruebaService, private router: Router) { }
 
   formularioRegistro = new FormGroup({
     nombre: new FormControl(''),
@@ -44,9 +45,13 @@ export class RegistroComponent {
       .subscribe({
         next: (response) => {
           console.log('Usuario insertado correctamente:', response);
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+          });
         },
         error: (error) => {
           console.error('Error al insertar usuario:', error);
+          alert('Error al insertar usuario');
         }
       });
 

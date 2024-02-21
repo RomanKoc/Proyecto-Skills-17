@@ -58,11 +58,14 @@ export class LoginComponent {
         /* desecriptar a string porque si no no compara y da error!!!!! */
         if (this.formularioRegistro.value.password == passwordDesencriptada) {
           console.log('Usuario logeado correctamente');
+          alert('Usuario logeado correctamente');
           this.id = usuario.id;
           localStorage.setItem('userId', this.id.toString());
-          this.router.navigate(['/bienvenida']);
-        } else {
-          console.log('Contraseña incorrecta');
+          /* this.router.navigate(['/']); */
+          this.router.navigate(['/']).then(() => {
+            // Recargar la página
+            window.location.reload();
+          });
         }
       }
     });

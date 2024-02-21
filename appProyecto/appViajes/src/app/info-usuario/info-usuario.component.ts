@@ -11,8 +11,12 @@ import { ApiPruebaService } from '../api-prueba.service';
 
 export class InfoUsuarioComponent {
 
-  id = 0;
+  userId = '0';
   usuario: any;
+
+  ngOnInit(): void {
+    this.userId = localStorage.getItem('userId') ?? '0';
+  }
 
   constructor(private usuarios: ApiPruebaService) {
     this.usuarios.retornar()
