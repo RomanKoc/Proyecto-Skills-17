@@ -36,7 +36,7 @@ export const routes: Routes = [
                 component: ExperienciaIndividualComponent
             },
             {
-                path: ':experiencia-nueva/id:', /* Creo que no hay que meter id, revisar */
+                path: ':experiencia-nueva', /* Creo que no hay que meter id, revisar */
                 component: ExperienciaIndividualComponent
             },
         ]
