@@ -19,7 +19,7 @@ export class ExperienciasComponent {
   imagenes: any = [];
 
   obtenerPrimeraImagenPorExperiencia(experienciaId: number): any {
-    return this.imagenes.find((img:any) => img.experiencia_id === experienciaId);
+    return this.imagenes.find((img: any) => img.experiencia_id === experienciaId);
   }
 
   constructor(private router: Router, private experienciaServ: ExperienciasService,
@@ -36,8 +36,13 @@ export class ExperienciasComponent {
         console.log('result -> ', resultado);
         this.imagenes = resultado
       });
-
-
+  }
+  obtenerNombreImagenPorExperiencia(experiencia: any): string {
+    const imagen = this.imagenes.find((img: any) => img.experiencia_id === experiencia.id);
+    if (imagen && imagen.nombre) {
+      return imagen.nombre;
+    }
+    return '';
   }
   prueba() {
     const id = 1;
