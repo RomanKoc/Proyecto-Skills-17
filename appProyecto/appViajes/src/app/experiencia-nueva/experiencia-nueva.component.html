@@ -1,5 +1,5 @@
 <div class="p-5">
-    <form method="post" [formGroup]="formularioExperiencia">
+    <form [formGroup]="formularioExperiencia" (submit)="registrarExperiencia()">
         <div class="contact-image">
             <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
         </div>

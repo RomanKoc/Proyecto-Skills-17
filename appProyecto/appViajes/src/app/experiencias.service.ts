@@ -8,7 +8,7 @@ export class ExperienciasService {
 
   constructor(private http: HttpClient) { }
   retornar() {
-    return this.http.get('http://127.0.0.1:8000/experiencia/') // recupera un archivo JSON
+    return this.http.get('http://127.0.0.1:8000/experiencia/') 
   }
   insertarExperiencia(experiencia: any) {
     return this.http.post('http://127.0.0.1:8000/experiencia/new', experiencia);

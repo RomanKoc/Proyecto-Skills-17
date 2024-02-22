@@ -28,6 +28,7 @@ export class ExperienciaNuevaComponent {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
+    console.log('userId -> ', this.userId);
   }
 
   formularioExperiencia = new FormGroup({
@@ -41,7 +42,7 @@ export class ExperienciaNuevaComponent {
   });
 
   registrarExperiencia() {
-    const experiencia = {
+    /* const experiencia = {
       titulo: this.formularioExperiencia.value.titulo,
       texto: this.formularioExperiencia.value.texto,
       puntuacion: this.formularioExperiencia.value.puntuacion,
@@ -49,15 +50,23 @@ export class ExperienciaNuevaComponent {
       usuario_id: this.userId,
       localizacion_id: this.formularioExperiencia.value.localizacion,
       subcategoria_id: this.formularioExperiencia.value.subcategoria,
+    }; */
+    const experiencia = {
+      titulo: 'prueba',
+      texto: 'pruebatxt',
+      /* puntuacion: 'prueba',
+      fecha: '2024/01/01', */
+      usuario_id: this.userId,
+      /* localizacion_id: 1,
+      subcategoria_id: 1, */
     };
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
           console.log('Experiencia insertada correctamente:', response);
-          // Puedes hacer algo después de insertar la experiencia, como redirigir a otra página
         },
         error: (error) => {
-          console.error('Error al insertar experiencia:', error);
+          console.error('Error al insertar experienciA:', error);
           alert('Error al insertar experiencia');
         }
       });

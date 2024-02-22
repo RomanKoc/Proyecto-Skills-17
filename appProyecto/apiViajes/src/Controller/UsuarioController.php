@@ -79,10 +79,9 @@ class UsuarioController extends AbstractController
         ]);
     } */
 
-    #[Route('/new', name: 'app_usuario_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_usuario_new', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        
         $data = json_decode($request->getContent(), true);
         //ORIGINAL
         // Crear una nueva instancia de Usuario y asignar los datos recibidos
