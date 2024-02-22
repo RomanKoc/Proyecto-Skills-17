@@ -93,20 +93,28 @@ class ExperienciaController extends AbstractController
             'form' => $form,
         ]);
     } */
-    #[Route('/experiencia/new', name: 'app_experiencia_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'app_experiencia_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         // Obtener los datos de la solicitud JSON
         $data = json_decode($request->getContent(), true);
 
+        $usuarioRepository = $entityManager->getRepository(Usuario::class);
+        $usuario = $usuarioRepository->find($data['usuarioId']);
+
+        // Verificar si se encontró el usuario
+        if (!$usuario) {
+            return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
+        }
+
         $experiencia = new Experiencia();
         $experiencia->setTitulo($data['titulo']);
         $experiencia->setTexto($data['texto']);
-        /* $experiencia->setPuntuacion($data['puntuacion']); */
-        /* $experiencia->setFecha(new \DateTime($data['fecha'])); */ 
-        $experiencia->setUsuario($data['usuario_id']);
-        /* $experiencia->setLocalizacion($data['localizacion_id']);
-        $experiencia->setSubcategoria($data['localizacion_id']); */
+        $experiencia->setPuntuacion(NULL);
+        $experiencia->setFecha(NULL);
+        $experiencia->setUsuario($usuario);
+        $experiencia->setLocalizacion(NULL);
+        $experiencia->setSubcategoria(NULL);
 
         $entityManager->persist($experiencia);
         $entityManager->flush();

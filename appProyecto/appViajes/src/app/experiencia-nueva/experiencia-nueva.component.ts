@@ -56,7 +56,7 @@ export class ExperienciaNuevaComponent {
       texto: 'pruebatxt',
       /* puntuacion: 'prueba',
       fecha: '2024/01/01', */
-      usuario_id: this.userId,
+      usuarioId: this.userId,
       /* localizacion_id: 1,
       subcategoria_id: 1, */
     };

@@ -96,7 +96,6 @@ class UsuarioController extends AbstractController
         $rolPorDefecto = $entityManager->getReference('App\Entity\Rol', 2);
         $usuario->setRol($rolPorDefecto);
 
-        // Guardar el nuevo usuario en la base de datos
         $entityManager->persist($usuario);
         $entityManager->flush();
 
