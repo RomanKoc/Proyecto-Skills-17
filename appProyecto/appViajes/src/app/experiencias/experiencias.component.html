@@ -13,7 +13,11 @@
             </div>
             <div class="d-flex justify-content-between">
                 <a href="experiencia-individual/{{exp.id}}" class="btn btn-primary">Mas informacion</a>
-                <a href="#" class="btn btn-primary">Me gusta</a>
+                @if (desactivarPorID()) {
+                <a href="#" aria-disabled="true" class="btn btn-primary">Me gusta</a>
+                } @else {
+                <a href="#" aria-disabled="false" class="btn btn-primary disabled">Me gusta</a>
+                }
             </div>
         </div>
     </div>

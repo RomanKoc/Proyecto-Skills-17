@@ -15,11 +15,20 @@ import { ApiImagenService } from '../api-imagen.service';
 })
 export class ExperienciasComponent {
 
+  userId = 'not';
   experiencias: any = [];
   imagenes: any = [];
 
   obtenerPrimeraImagenPorExperiencia(experienciaId: number): any {
     return this.imagenes.find((img: any) => img.experiencia_id === experienciaId);
+  }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('userId')) {
+      this.userId = localStorage.getItem('userId') ?? '0';
+    } else {
+      this.userId = 'not';
+    }
   }
 
   constructor(private router: Router, private experienciaServ: ExperienciasService,
@@ -49,6 +58,12 @@ export class ExperienciasComponent {
     this.router.navigate(['/experiencia-nueva', id]).then(() => {
       window.location.reload();
     });
+  }
+  desactivarPorID() {
+    if (this.userId != 'not') {
+      return true;
+    }
+    return false;
   }
 
 }
