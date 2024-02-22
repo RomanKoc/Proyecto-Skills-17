@@ -35,9 +35,8 @@ export class ExperienciaIndividualComponent {
         this.imagenes = resultado
       });
     this.parametroRuta.paramMap.subscribe((params: ParamMap) => {
-      console.log('params -> ', params.get('id'));
+      console.log('paramETRO -> ', params.get('id'));
       this.id = params.get('id')! // obtiene id de la ruta
-
     });
     this.obtenerExperiencia(this.id);
   }

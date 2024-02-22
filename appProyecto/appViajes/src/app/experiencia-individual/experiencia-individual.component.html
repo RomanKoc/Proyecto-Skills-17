@@ -1,7 +1,6 @@
 @for (exp of experiencias; track $index) {
-@if (exp.usuario.id == id) {
-
-<div class="container mt-4 mb-4">
+@if (exp.id == id) {
+<div class="container mt-4 mb-4 ">
     <div class="row slider">
         <!--  d-flex justify-content-center -->
         <div class="col">
@@ -10,18 +9,34 @@
     </div>
 </div>
 <div class="container mt-3 mb-3">
-    <div class="row slider">
+    <div class="row slider mx-0 mx-sm-5">
         <div class="col mx-3">
-            <p>{{exp.texto}}</p>
+            <p>🏞️🏞️{{exp.texto}}</p>
         </div>
     </div>
 </div>
 
 <div class="container mt-3 mb-3">
-    <div class="row slider">
-        <div class="col">
-            <p>🏞️🏞️{{exp.localizacion.nombre}}, {{exp.localizacion.provincia.nombre}}
-                ({{exp.localizacion.provincia.comunidad.nombre}})</p>
+    <div class="row slider mx-0  mx-sm-5">
+        <div class="col mx-3">
+            <p>🏞️🏞️<strong> {{exp.localizacion.nombre}}</strong>, {{exp.localizacion.provincia.nombre}}
+                ({{exp.localizacion.provincia.comunidad.nombre}}).</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3 mb-3">
+    <div class="row slider mx-0  mx-sm-5">
+        <div class="col mx-3">
+            <p>🏞️🏞️Publicado por<strong>{{exp.usuario.nombre}} </strong> el -> {{exp.fecha}}</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3 mb-3">
+    <div class="row slider mx-0  mx-sm-5">
+        <div class="col mx-3 d-flex justify-content-between">
+            <p>🏞️🏞️Puntuacion <strong>{{exp.puntuacion}} </strong></p>
+            <a href="COMENTARIOS" class="btn btn-primary">Realizar comentario</a>
         </div>
     </div>
 </div>
