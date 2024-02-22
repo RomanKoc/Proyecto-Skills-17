@@ -144,3 +144,7 @@ footer{
     background: #18587a;
     color: #fff;
 }
+.icono {
+    max-width: 20px; /* Ajusta el tamaño máximo según tus necesidades */
+    max-height: 20px;
+}

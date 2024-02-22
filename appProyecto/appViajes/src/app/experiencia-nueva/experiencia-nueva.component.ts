@@ -10,9 +10,18 @@ import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 })
 export class ExperienciaNuevaComponent {
   formularioContacto = new FormGroup({
-    /* esto esta mal arreglar */
     nombre: new FormControl(''),
+    apellido: new FormControl(''),
     email: new FormControl(''),
-    mensaje: new FormControl('')
+    telefono: new FormControl(''),
+    mensaje: new FormControl(''),
+    titulo: new FormControl(''),
+    fecha: new FormControl(''),
+    texto: new FormControl(''),
+    categoria: new FormControl(''),
+    subcategoria: new FormControl(''),
+    provincias: new FormControl(''),
+    comunidades: new FormControl(''),
+    localizacion: new FormControl('')
   });
 }

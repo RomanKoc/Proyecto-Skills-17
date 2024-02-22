@@ -11,7 +11,7 @@
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0 mx-sm-5">
         <div class="col mx-3">
-            <p>🏞️🏞️{{exp.texto}}</p>
+            <p><i class="bi bi-pencil-fill"></i> {{exp.texto}}</p>
         </div>
     </div>
 </div>
@@ -19,7 +19,8 @@
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
         <div class="col mx-3">
-            <p>🏞️🏞️<strong> {{exp.localizacion.nombre}}</strong>, {{exp.localizacion.provincia.nombre}}
+            <p><i class="bi bi-crosshair"></i><strong> {{exp.localizacion.nombre}}</strong>,
+                {{exp.localizacion.provincia.nombre}}
                 ({{exp.localizacion.provincia.comunidad.nombre}}).</p>
         </div>
     </div>
@@ -28,14 +29,15 @@
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
         <div class="col mx-3">
-            <p>🏞️🏞️Publicado por<strong>{{exp.usuario.nombre}} </strong> el -> {{exp.fecha}}</p>
+            <p><i class="bi bi-person-lines-fill"></i> Publicado por <strong>{{exp.usuario.nombre}} </strong></p>
+            <p><i class="bi bi-calendar-date-fill"></i> {{exp.fecha}}</p>
         </div>
     </div>
 </div>
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
         <div class="col mx-3 d-flex justify-content-between">
-            <p>🏞️🏞️Puntuacion <strong>{{exp.puntuacion}} </strong></p>
+            <p><i class="bi bi-suit-heart-fill"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
             <a href="COMENTARIOS" class="btn btn-primary">Realizar comentario</a>
         </div>
     </div>
