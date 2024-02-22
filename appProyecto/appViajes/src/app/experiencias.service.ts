@@ -10,7 +10,7 @@ export class ExperienciasService {
   retornar() {
     return this.http.get('http://127.0.0.1:8000/experiencia/') // recupera un archivo JSON
   }
-  /* insertarUsuario(usuario: any) {
-    return this.http.post('http://127.0.0.1:8000/usuario/new', usuario);
-  } */
+  insertarExperiencia(experiencia: any) {
+    return this.http.post('http://127.0.0.1:8000/experiencia/new', experiencia);
+  }
 }

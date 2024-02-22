@@ -1,185 +1,92 @@
-<div class="container contact-form mt-3 col-xl-12 col-lg-12 col-md-12 col-11">
-    <div class="contact-image">
-        <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
-    </div>
+<div class="p-5">
+    <form method="post" [formGroup]="formularioExperiencia">
+        <div class="contact-image">
+            <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
+        </div>
 
-    <form method="post" [formGroup]="formularioContacto">
         <h3>Crear Experiencia</h3>
 
         <div class="row">
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-floating col-3">
+            <div class="col-md-6">
+                <div class="form-floating">
                     <input type="text" class="form-control" placeholder="Titulo" formControlName="titulo">
                     <label for="floatingTitulo">Titulo</label>
                 </div>
-
-                <div class="form-floating d-flex col-3 offset-1">
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
                     <input type="date" class="form-control" placeholder="Fecha" formControlName="fecha">
                     <label for="floatingFecha">Fecha</label>
                 </div>
             </div>
+
         </div>
 
-
         <div class="row">
-            <div class="col-md-12 d-flex justify-content-start">
-                <div class="form-floating mt-2 col-7">
+            <div class="col-md-12">
+                <div class="form-floating mt-2">
                     <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"></textarea>
                     <label for="floatingTexto">Texto</label>
                 </div>
             </div>
         </div>
 
-        <div class="row col-12 d-flex justify-content-start">
-            <div class="mt-3 col-xl-4 col-lg-6 col-md-7 col-sm-9 col-9">
-                <select class="form-select" formControlName="categoria">
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-select mt-3">
                     <option>Categoria</option>
                     <option>Turismo</option>
                 </select>
             </div>
-
-
-        </div>
-
-        <div class="row col-12 d-flex justify-content-start">
-            <div class="mt-3 col-xl-4 col-lg-3 col-md-7 col-sm-9 col-9 d-flex justify-content-start">
-                <select class="form-select" formControlName="subcategoria">
+            <div class="col-md-6">
+                <select class="form-select mt-3" formControlName="subcategoria">
                     <option>Subcategoria</option>
                     <option>Montaña</option>
                 </select>
             </div>
         </div>
-        <div class="row col-12">
-            <div class="mt-3 col-xl-4 col-lg-6 col-md-7 col-sm-9 col-9 d-flex justify-content-start">
-                <select class="form-select" formControlName="provincias">
+
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-select mt-3">
                     <option>Provincia</option>
                     <option>Valladolid</option>
                 </select>
             </div>
-
-            <div class="mt-3 col-xl-4 col-lg-3 col-md-7 col-sm-9 col-9  d-flex justify-content-start">
-
-                <select class="form-select" formControlName="comunidades">
+            <div class="col-md-6">
+                <select class="form-select mt-3">
                     <option>Comunidades</option>
                     <option>Castilla y León</option>
                 </select>
             </div>
         </div>
 
-
-        <div class="row col-12">
-            <div class="col-xl-4 col-lg-6 col-md-7 col-sm-9 col-9 mt-3 d-flex justify-content-start">
+        <div class="row">
+            <div class="col-md-6 mt-3">
                 <input list="municipio" name="municipio" formControlName="localizacion" placeholder="Municipio"
-                    style="width: 100%; height: 35px;" />
+                    style="width: 100%; height: 35px;">
                 <datalist id="municipio">
-                    <option value="Carrion"></option>
-                    <option value="Saldaña"></option>
-                    <option value="Aguilar"></option>
-                    <option value="Guardo"></option>
-                    <option value="Alar"></option>
+                    <option value="Carrion">Carrion</option>
+                    <option value="Saldaña">Saldaña</option>
+                    <option value="Aguilar">Aguilar</option>
+                    <option value="Guardo">Guardo</option>
+                    <option value="Alar">Alar</option>
                 </datalist>
             </div>
-
-            <div class="col-xl-4 col-lg-3 col-md-7 col-sm-9 col-9 mt-3 mb-3 d-flex justify-content-end">
-                <input type="file" class="form-control">
+            <div class="col-md-6">
+                <input type="file" class="form-control mt-3">
             </div>
         </div>
 
-        <div class="d-flex justify-content-center mt-2 mb-3">
-            <button class="w-25 btn btn-lg mb-4 mt-3" type="submit" style="background-color: #f78536;">Entrar</button>
+        <!-- Sexta fila -->
+        <div class="row mt-4">
+            <div class="col-md-6 d-flex justify-content-center">
+                <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion" style="width: 100%; height: 40px;" max="10" min="1">
+            </div>
+ 
+            <div class="col-md-6 d-flex justify-content-center mb-3">
+                <button class="btn btn-lg" type="submit" style="background-color: #f78536; width: 150px; height: 45px;">Entrar</button>
+            </div>
         </div>
     </form>
 </div>
-<!-- 
-<div class="container contact-form mt-3 col-xl-12 col-lg-12 col-md-12 col-11">
-    <div class="contact-image">
-        <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
-    </div>
-
-    <form method="post" [formGroup]="formularioContacto">
-        <h3>Crear Experiencia</h3>
-
-        <div class="row">
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-floating col-3">
-                    <input type="text" class="form-control" placeholder="Titulo" formControlName="titulo">
-                    <label for="floatingTitulo">Titulo</label>
-                </div>
-
-                <div class="form-floating d-flex col-3 offset-1">
-                    <input type="date" class="form-control" placeholder="Fecha" formControlName="fecha">
-                    <label for="floatingFecha">Fecha</label>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-floating mt-2 col-7">
-                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"></textarea>
-                    <label for="floatingTexto">Texto</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row col-12">
-            <div class="mt-3 col-xl-5 col-lg-6 col-md-7 col-sm-9 col-9 d-flex justify-content-end">
-                <select class="form-select" formControlName="categoria">
-                    <option>Categoria</option>
-                    <option>Turismo</option>
-                </select>
-            </div>
-
-            <div class="mt-3 col-xl-4 col-lg-3 col-md-7 col-sm-9 col-9 d-flex justify-content-end">
-                <select class="form-select" formControlName="subcategoria">
-                    <option>Subcategoria</option>
-                    <option>Montaña</option>
-                </select>
-            </div>
-        </div>
-
-
-        <div class="row col-12">
-            <div class="mt-3 col-xl-5 col-lg-6 col-md-7 col-sm-9 col-9 d-flex justify-content-end">
-
-                <select class="form-select" formControlName="provincias">
-                    <option>Provincia</option>
-                    <option>Valladolid</option>
-                </select>
-            </div>
-
-            <div class="mt-3 col-xl-4 col-lg-3 col-md-7 col-sm-9 col-9  d-flex justify-content-end">
-
-                <select class="form-select"  formControlName="comunidades">
-                    <option>Comunidades</option>
-                    <option>Castilla y León</option>
-                </select>
-            </div>
-        </div>
-
-        
-        <div class="row col-11">
-            <div class="mt-3 col-xl-5 col-lg-6 col-md-7 col-sm-9 col-9 mx-lg-5 mx-md-3 mx-sm-2 mx-2 d-flex justify-content-end">
-                <label>Municipio:</label>
-                <input list="municipio" name="municipio" formControlName="localizacion" placeholder="Municipio"/>
-                <datalist id="municipio">
-                    <option value="Carrion"></option>
-                    <option value="Saldaña"></option>
-                    <option value="Aguilar"></option>
-                    <option value="Guardo"></option>
-                    <option value="Alar"></option>
-                </datalist>
-            </div>
-            
-            <div class="mt-3 col-xl-3 col-lg-2 col-md-6 col-sm-8 col-8 mx-xl-0 mx-md-4 d-flex justify-content-end">
-                <label for="image_uploads" class="imagenes">Insertar imagenes</label>
-                <input class="falso" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple />
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center mt-2 mb-3">
-            <button class="w-25 btn btn-lg mb-4 mt-3" type="submit" style="background-color: #f78536;">Entrar</button>
-        </div>
-    </form>
-</div> -->

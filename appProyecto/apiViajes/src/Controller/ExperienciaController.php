@@ -57,7 +57,7 @@ class ExperienciaController extends AbstractController
                         ],
                     ],
                 ],
-                'comentarios' => [], 
+                'comentarios' => [],
             ];
 
             foreach ($experiencia->getComentarios() as $comentario) {
@@ -74,7 +74,7 @@ class ExperienciaController extends AbstractController
         return new JsonResponse($experienciasArray);
     }
 
-    #[Route('/new', name: 'app_experiencia_new', methods: ['GET', 'POST'])]
+    /* #[Route('/new', name: 'app_experiencia_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $experiencium = new Experiencia();
@@ -92,6 +92,35 @@ class ExperienciaController extends AbstractController
             'experiencium' => $experiencium,
             'form' => $form,
         ]);
+    } */
+    #[Route('/experiencia/new', name: 'app_experiencia_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // Obtener los datos de la solicitud JSON
+        $data = json_decode($request->getContent(), true);
+
+        // Crear una nueva instancia de Experiencia y asignar los datos recibidos
+        $experiencia = new Experiencia();
+        $experiencia->setTitulo($data['titulo']);
+        $experiencia->setTexto($data['texto']);
+        $experiencia->setPuntuacion($data['puntuacion']);
+        // Asegúrate de que el formato de la fecha sea adecuado para tu base de datos
+        $fecha = \DateTime::createFromFormat('Y-m-d', $data['fecha']);
+        $experiencia->setFecha($fecha);
+
+        // Obtener el usuario por su ID (suponiendo que tienes el ID del usuario en los datos recibidos)
+        $usuario = $entityManager->getRepository(Usuario::class)->find($data['usuario_id']);
+        $experiencia->setUsuario($usuario);
+
+        // Obtener la localización por su ID (suponiendo que tienes el ID de la localización en los datos recibidos)
+        $localizacion = $entityManager->getRepository(Localizacion::class)->find($data['localizacion_id']);
+        $experiencia->setLocalizacion($localizacion);
+
+        // Guardar la nueva experiencia en la base de datos
+        $entityManager->persist($experiencia);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Experiencia insertada correctamente'], Response::HTTP_CREATED);
     }
 
     /* #[Route('/{id}', name: 'app_experiencia_show', methods: ['GET'])]
