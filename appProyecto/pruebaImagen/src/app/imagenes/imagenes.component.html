@@ -1,0 +1,6 @@
+<input type="file" #fileInput (change)="previsualizarImagen($event)">
+<button (click)="subirImagen()">Subir Imagen</button>
+<img *ngIf="urlImagen" [src]="urlImagen" alt="Imagen seleccionada">
+<img *ngIf="urlImagen" [src]="urlImagenSubida" alt="Imagen subida">
+<hr>
+<img src="http://127.0.0.1:8000//assets/uploads/default.jpeg" alt="Imagen subida">

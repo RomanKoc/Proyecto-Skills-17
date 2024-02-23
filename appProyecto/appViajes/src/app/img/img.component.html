@@ -1,0 +1,7 @@
+<form (ngSubmit)="enviarImagen()" enctype="multipart/form-data">
+    <div class="col-4">
+        <label for='imagen'><b>Imagen</b></label>
+    </div>
+    <div class="col-4"> <input type="file" name="imagen" (change)="cargarImagen($event)"> </div>
+    <button type="submit" class="btn btn-info">Agregar Imagen</button>
+</form>
