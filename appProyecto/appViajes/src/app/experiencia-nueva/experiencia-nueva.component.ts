@@ -38,7 +38,7 @@ export class ExperienciaNuevaComponent {
     texto: new FormControl(''),
     puntuacion: new FormControl(''),
     fecha: new FormControl(''),
-    localizacion: new FormControl(''),
+    localizacion: new FormControl(''),df
     subcategoria: new FormControl(''),
     imagen: new FormControl(''),
   });
