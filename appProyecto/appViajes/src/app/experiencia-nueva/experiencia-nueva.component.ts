@@ -51,14 +51,15 @@ export class ExperienciaNuevaComponent {
       localizacion_id: this.formularioExperiencia.value.localizacion,
       subcategoria_id: this.formularioExperiencia.value.subcategoria,
     }; */
+    const puntuacion = parseInt(this.formularioExperiencia.value.puntuacion || '0');
     const experiencia = {
       titulo: 'prueba',
       texto: 'pruebatxt',
-      /* puntuacion: 'prueba',
-      fecha: '2024/01/01', */
+      puntuacion: 5,
+      fecha: '2024-01-01',
       usuarioId: this.userId,
-      /* localizacion_id: 1,
-      subcategoria_id: 1, */
+      localizacionId: 1,
+      subcategoriaId: 1,
     };
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({

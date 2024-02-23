@@ -34,6 +34,7 @@ class UsuarioController extends AbstractController
             $usuariosArray[] = [
                 'id' => $usuario->getId(),
                 'nombre' => $usuario->getNombre(),
+                'apellidos' => $usuario->getApellidos(),
                 'mail' => $usuario->getMail(),
                 'ciudad' => $usuario->getCiudad(),
                 'password' => $usuario->getPassword(),

@@ -12,7 +12,7 @@ import { ApiPruebaService } from '../api-prueba.service';
 export class InfoUsuarioComponent {
 
   userId = '0';
-  usuario: any;
+  usuario: any = {};
   usuarios: any;
 
   ngOnInit(): void {
@@ -31,6 +31,7 @@ export class InfoUsuarioComponent {
         this.usuarios.forEach((user: any) => {
           if (user.id == this.userId) {
             this.usuario = user;
+            console.log('usuario -> ', this.usuario);
             return;
           }
         });

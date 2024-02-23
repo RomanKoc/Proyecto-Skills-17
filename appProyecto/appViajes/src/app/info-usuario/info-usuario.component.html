@@ -8,15 +8,15 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center ">
                 <div class="form-floating col-9 col-md-7">
-                    <input type="text" class="form-control" value="{{usuario.nombre}}">
+                    <input type="text" class="form-control" placeholder="Nombre" value="{{usuario?.nombre}}">
                     <label for="floatingInput">Nombre</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" placeholder="Email" value="{{usuario.apellidos}}">
-                    <label for="floatingInput">Apellido</label>
+                    <input type="text" class="form-control" placeholder="Apellidos" value="{{usuario?.apellidos}}">
+                    <label for="floatingInput">Apellidos</label>
                 </div>
             </div>
 
@@ -29,8 +29,15 @@
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="text" class="form-control" value="{{usuario.ciudad}}">
+                    <input type="text" class="form-control" placeholder="Ciudad" value="{{usuario.ciudad}}">
                     <label for="floatingInput">Ciudad</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="form-floating mt-2 col-9 col-md-7">
+                    <input type="password" class="form-control" placeholder="Cambiar contraseña" value="">
+                    <label for="floatingInput">Cambiar contraseña</label>
                 </div>
             </div>
 

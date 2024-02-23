@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Usuario;
 use App\Entity\Localizacion;
 use App\Entity\Comentario;
+use App\Entity\Subcategoria;
 
 #[Route('/experiencia')]
 class ExperienciaController extends AbstractController
@@ -107,14 +108,34 @@ class ExperienciaController extends AbstractController
             return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
         }
 
+        // Buscar la localización por ID
+        $localizacionRepository = $entityManager->getRepository(Localizacion::class);
+        $localizacion = $localizacionRepository->find($data['localizacionId']);
+
+        // Verificar si se encontró la localización
+        if (!$localizacion) {
+            return new JsonResponse(['error' => 'Localización no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Buscar la subcategoría por ID
+        $subcategoriaRepository = $entityManager->getRepository(Subcategoria::class);
+        $subcategoria = $subcategoriaRepository->find($data['subcategoriaId']);
+
+        // Verificar si se encontró la subcategoría
+        if (!$subcategoria) {
+            return new JsonResponse(['error' => 'Subcategoría no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        $fecha = \DateTime::createFromFormat('Y-m-d', $data['fecha']);
+
         $experiencia = new Experiencia();
         $experiencia->setTitulo($data['titulo']);
         $experiencia->setTexto($data['texto']);
-        $experiencia->setPuntuacion(NULL);
-        $experiencia->setFecha(NULL);
+        $experiencia->setPuntuacion($data['puntuacion']);
+        $experiencia->setFecha($fecha);
         $experiencia->setUsuario($usuario);
-        $experiencia->setLocalizacion(NULL);
-        $experiencia->setSubcategoria(NULL);
+        $experiencia->setLocalizacion($localizacion);
+        $experiencia->setSubcategoria($subcategoria);
 
         $entityManager->persist($experiencia);
         $entityManager->flush();
