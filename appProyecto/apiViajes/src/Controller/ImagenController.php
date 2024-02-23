@@ -44,7 +44,7 @@ class ImagenController extends AbstractController
         return new JsonResponse($imagenesArray);
     }
 
-    #[Route('/new', name: 'app_imagen_new', methods: ['GET', 'POST'])]
+    /* #[Route('/new', name: 'app_imagen_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $imagen = new Imagen();
@@ -62,6 +62,40 @@ class ImagenController extends AbstractController
             'imagen' => $imagen,
             'form' => $form,
         ]);
+    } */
+    #[Route('/new', name: 'app_imagen_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['imagen']) || empty($data['imagen'])) {
+            return new JsonResponse(['error' => 'No se proporcionó la imagen'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $imagen = new Imagen();
+        $imagenBinaria = base64_decode($data['imagen']);
+
+        // Verificar si la decodificación fue exitosa
+        if ($imagenBinaria === false) {
+            return new JsonResponse(['error' => 'No se pudo decodificar la imagen'], Response::HTTP_BAD_REQUEST);
+        }
+        $experiencia = $entityManager->find(Experiencia::class, $data['experienciaId']);
+        if (!$experiencia) {
+            return new JsonResponse(['error' => 'No se pudo encontrar la experiencia'], Response::HTTP_NOT_FOUND);
+        }
+
+        $imagen->setNombre($imagenBinaria);
+        $imagen->setExperiencia($experiencia);
+
+        // Persistir la imagen en la base de datos
+        try {
+            $entityManager->persist($imagen);
+            $entityManager->flush();
+
+            return new JsonResponse(['message' => 'Imagen insertada correctamente'], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return new JsonResponse(['error' => 'Error al insertar la imagen: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     #[Route('/{id}', name: 'app_imagen_show', methods: ['GET'])]

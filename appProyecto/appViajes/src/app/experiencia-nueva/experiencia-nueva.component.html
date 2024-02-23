@@ -73,19 +73,21 @@
                     <option value="Alar">Alar</option>
                 </datalist>
             </div>
-            <div class="col-md-6">
-                <input type="file" class="form-control mt-3">
+            <div class="col-md-6 d-flex justify-content-center">
+                <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion"
+                    style="width: 100%; height: 40px;" max="10" min="1">
             </div>
         </div>
 
         <!-- Sexta fila -->
         <div class="row mt-4">
-            <div class="col-md-6 d-flex justify-content-center">
-                <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion" style="width: 100%; height: 40px;" max="10" min="1">
+            <div class="col-md-6">
+                <input type="file" class="form-control mt-3" formControlName="imagen" multiple
+                    accept="image/png, image/jpeg, image/jpg">
             </div>
- 
             <div class="col-md-6 d-flex justify-content-center mb-3">
-                <button class="btn btn-lg" type="submit" style="background-color: #f78536; width: 150px; height: 45px;">Entrar</button>
+                <button class="btn btn-lg" type="submit"
+                    style="background-color: #f78536; width: 150px; height: 45px;">Entrar</button>
             </div>
         </div>
     </form>

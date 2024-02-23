@@ -8,9 +8,12 @@ export class ExperienciasService {
 
   constructor(private http: HttpClient) { }
   retornar() {
-    return this.http.get('http://127.0.0.1:8000/experiencia/') 
+    return this.http.get('http://127.0.0.1:8000/experiencia/')
   }
   insertarExperiencia(experiencia: any) {
     return this.http.post('http://127.0.0.1:8000/experiencia/new', experiencia);
+  }
+  insertarImagen(imagen: any) {
+    return this.http.post('http://127.0.0.1:8000/imagen/new', imagen);
   }
 }

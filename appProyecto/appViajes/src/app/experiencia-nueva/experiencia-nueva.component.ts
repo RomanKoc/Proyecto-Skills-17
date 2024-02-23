@@ -36,9 +36,9 @@ export class ExperienciaNuevaComponent {
     texto: new FormControl(''),
     puntuacion: new FormControl(''),
     fecha: new FormControl(''),
-    /*     usuario_id: new FormControl(''), */
-    localizacion: new FormControl(0),
-    subcategoria: new FormControl(0),
+    localizacion: new FormControl(''),
+    subcategoria: new FormControl(''),
+    imagen: new FormControl(''),
   });
 
   registrarExperiencia() {
@@ -53,13 +53,17 @@ export class ExperienciaNuevaComponent {
     }; */
     const puntuacion = parseInt(this.formularioExperiencia.value.puntuacion || '0');
     const experiencia = {
-      titulo: 'prueba',
-      texto: 'pruebatxt',
+      titulo: 'prueba2',
+      texto: 'pruebatxt2',
       puntuacion: 5,
       fecha: '2024-01-01',
       usuarioId: this.userId,
       localizacionId: 1,
       subcategoriaId: 1,
+    };
+    const foto = {
+      nombre: this.formularioExperiencia.value.imagen,
+      experienciaId: this.userId
     };
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
@@ -71,6 +75,18 @@ export class ExperienciaNuevaComponent {
           alert('Error al insertar experiencia');
         }
       });
+
+    this.experienciaService.insertarImagen(foto)
+      .subscribe({
+        next: (response) => {
+          console.log('Imagen insertada correctamente:', response);
+        },
+        error: (error) => {
+          console.error('Error al insertar experiencia:', error);
+          alert('Error al insertar experiencia');
+        }
+      });
     this.formularioExperiencia.reset();
   }
+
 }
