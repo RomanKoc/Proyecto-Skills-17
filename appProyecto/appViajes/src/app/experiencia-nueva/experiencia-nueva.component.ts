@@ -18,8 +18,7 @@ export class ExperienciaNuevaComponent {
 
   /* , private router: Router */
   constructor(private experienciaService: ExperienciasService,
-    private localizacionService: LocalizacionService,
-    private imagenesService: ImagenesService) {
+    private localizacionService: LocalizacionService,) {
     this.localizacionService.retornar()
       .subscribe((result) => {
         /* console.log('result -> ', result); */
@@ -38,28 +37,23 @@ export class ExperienciaNuevaComponent {
     texto: new FormControl(''),
     puntuacion: new FormControl(''),
     fecha: new FormControl(''),
-    localizacion: new FormControl(''),df
+    localizacion: new FormControl(''),
     subcategoria: new FormControl(''),
     imagen: new FormControl(''),
   });
 
-  onFileChange(event: any): File {
-    const file = event.target.files[0];
-    return file;
-  }
-
   registrarExperiencia() {
-    /* const experiencia = {
+    const experiencia = {
       titulo: this.formularioExperiencia.value.titulo,
       texto: this.formularioExperiencia.value.texto,
       puntuacion: this.formularioExperiencia.value.puntuacion,
       fecha: this.formularioExperiencia.value.fecha,
       usuario_id: this.userId,
-      localizacion_id: this.formularioExperiencia.value.localizacion,
-      subcategoria_id: this.formularioExperiencia.value.subcategoria,
-    }; */
+      localizacion_id:1,
+      subcategoria_id: 1,
+    };
     const puntuacion = parseInt(this.formularioExperiencia.value.puntuacion || '0');
-    const experiencia = {
+    /* const experiencia = {
       titulo: 'prueba2',
       texto: 'pruebatxt2',
       puntuacion: 5,
@@ -67,12 +61,8 @@ export class ExperienciaNuevaComponent {
       usuarioId: this.userId,
       localizacionId: 1,
       subcategoriaId: 1,
-    };
-    const foto = {
-      nombre: this.onFileChange(event),
-      experienciaId: this.userId
-    };
-    /* this.experienciaService.insertarExperiencia(experiencia)
+    }; */
+    this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
           console.log('Experiencia insertada correctamente:', response);
@@ -81,20 +71,8 @@ export class ExperienciaNuevaComponent {
           console.error('Error al insertar experienciA:', error);
           alert('Error al insertar experiencia');
         }
-      }); */
-
-    this.imagenesService.insertarImagen(foto)
-      .subscribe({
-        next: (response) => {
-          console.log('Imagen insertada correctamente:', response);
-        },
-        error: (error) => {
-          console.error('Error al insertar imagen:', error);
-          alert('Error al insertar imagen');
-        }
       });
-    this.formularioExperiencia.reset();
-  }
+    }
 
   /* 
   
