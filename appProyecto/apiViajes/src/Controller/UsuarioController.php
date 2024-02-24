@@ -46,39 +46,7 @@ class UsuarioController extends AbstractController
 
         return new JsonResponse($usuariosArray);
     }
-    /* #[Route('/', name: 'app_usuario_index', methods: ['GET'])]
-    public function index(UsuarioRepository $usuarioRepository, SerializerInterface $serializer): JsonResponse
-    {
-        $usuarios = $usuarioRepository->findAll();
 
-        $jsonUsuarios = $serializer->serialize($usuarios, 'json', [
-            'circular_reference_handler' => function ($object) {
-                return $object->getId();
-            }
-        ]);
-
-        return new JsonResponse($jsonUsuarios, JsonResponse::HTTP_OK, [], true);
-    } */
-
-    /* #[Route('/new', name: 'app_usuario_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $usuario = new Usuario();
-        $form = $this->createForm(UsuarioType::class, $usuario);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($usuario);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('usuario/new.html.twig', [
-            'usuario' => $usuario,
-            'form' => $form,
-        ]);
-    } */
 
     #[Route('/new', name: 'app_usuario_new', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -135,40 +103,37 @@ class UsuarioController extends AbstractController
     } */
 
 
-    #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
+    /* ESTO SE PODRIA BORRAR */
+   /*  #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
     public function show(Usuario $usuario): Response
     {
         return $this->render('usuario/show.html.twig', [
             'usuario' => $usuario,
         ]);
-    }
+    } */
 
     #[Route('/{id}/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UsuarioType::class, $usuario);
-        $form->handleRequest($request);
+        $data = json_decode($request->getContent(), true);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        $usuario->setNombre($data['nombre']);
+        $usuario->setApellidos($data['apellidos']);
+        $usuario->setMail($data['mail']);
+        $usuario->setCiudad($data['ciudad']);
+        $usuario->setPassword($data['password']);
 
-            return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
-        }
+        $entityManager->flush();
 
-        return $this->render('usuario/edit.html.twig', [
-            'usuario' => $usuario,
-            'form' => $form,
-        ]);
+        return new JsonResponse(['message' => 'Usuario modificado correctamente'], Response::HTTP_OK);
     }
 
     #[Route('/{id}', name: 'app_usuario_delete', methods: ['POST'])]
     public function delete(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $usuario->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($usuario);
-            $entityManager->flush();
-        }
+        $entityManager->remove($usuario);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
+        return new JsonResponse(['message' => 'Usuario eliminado correctamente'], Response::HTTP_OK);
     }
 }
