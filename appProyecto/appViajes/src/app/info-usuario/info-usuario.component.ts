@@ -83,20 +83,21 @@ export class InfoUsuarioComponent {
 
   modificarUsuario() {
     this.encriptarPasswd();
-    /* const usuario = {
+    const usuario = {
       nombre: this.formularioRegistro.value.nombre,
       apellidos: this.formularioRegistro.value.apellidos,
       mail: this.formularioRegistro.value.mail,
       ciudad: this.formularioRegistro.value.ciudad,
       password: this.formularioRegistro.value.password
-    }; */
-    const usuario = {
-      nombre: 'fresa',
-      apellidos: 'fresaaa',
-      mail: 'a@fresa',
-      ciudad: 'f',
-      password: 'a'
     };
+    /* const usuario = {
+      id: this.userId,
+      nombre: 'fresa',
+      apellidos: '',
+      mail: 'a@fresa',
+      ciudad: '',
+      password: 'a'
+    }; */
     console.log('usuarioCLS -> ', usuario);
     this.usuariosService.modificarUsuario(usuario)
       .subscribe({
@@ -108,7 +109,7 @@ export class InfoUsuarioComponent {
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);
-          alert('Error al insertar usuario');
+          alert('Error al actualizar usuario');
         }
       });
 

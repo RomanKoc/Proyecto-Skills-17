@@ -88,19 +88,19 @@ class UsuarioController extends AbstractController
             return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
         }
         // Actualizar los datos del usuario con los datos proporcionados en la solicitud
-        if (isset($data['nombre'])) {
+        if (isset($data['nombre']) && $data['nombre'] !== '') {
             $usuario->setNombre($data['nombre']);
         }
-        if (isset($data['apellidos'])) {
+        if (isset($data['apellidos']) && $data['apellidos'] !== '') {
             $usuario->setApellidos($data['apellidos']);
         }
-        if (isset($data['mail'])) {
+        if (isset($data['mail']) && $data['mail'] !== '') {
             $usuario->setMail($data['mail']);
         }
-        if (isset($data['ciudad'])) {
+        if (isset($data['ciudad']) && $data['ciudad'] !== '') {
             $usuario->setCiudad($data['ciudad']);
         }
-        if (isset($data['password'])) {
+        if (isset($data['password']) && $data['password'] !== '') {
             $usuario->setPassword($data['password']);
         }
 

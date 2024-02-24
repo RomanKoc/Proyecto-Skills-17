@@ -14,6 +14,7 @@ export class ApiPruebaService {
     return this.http.post('http://127.0.0.1:8000/usuario/new', usuario);
   }
   modificarUsuario(usuario: any) {
+    console.log('usuario -> ', usuario);
     return this.http.post('http://127.0.0.1:8000/usuario/edit', usuario);
   }
   borrar(usuario: any) {
