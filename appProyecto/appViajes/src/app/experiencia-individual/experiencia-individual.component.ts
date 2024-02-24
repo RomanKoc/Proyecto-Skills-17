@@ -22,14 +22,27 @@ export class ExperienciaIndividualComponent {
   comentarios: any = [];
   experienciaUsuario: any;
   imagenes: any = [];
+  userId: any;
+
+  ngOnInit(): void {
+    if (localStorage.getItem('userId')) {
+      this.userId = localStorage.getItem('userId') ?? '0';
+    } else {
+      this.userId = 'not';
+    }
+  }
+
+  longitudComentarios() {
+    return this.comentarios.length;
+  }
 
   constructor(private router: Router, private experienciaServ: ExperienciasService, private apiImagen: ApiImagenService, private parametroRuta: ActivatedRoute, private comentariosService: ComentariosService) {
-    
+
     this.comentariosService.retornar()
-    .subscribe((result) => {
-      this.comentarios = result;
-      console.log(this.comentarios);
-    })
+      .subscribe((result) => {
+        this.comentarios = result;
+        console.log(this.comentarios);
+      })
 
 
     this.experienciaServ.retornar()
@@ -63,6 +76,19 @@ export class ExperienciaIndividualComponent {
 
     this.experienciaUsuario = '-1';
     return;
+  }
+
+  borrarComentario(id: any) {
+    console.log('borrando...');
+    console.log('id -> ', id);
+    const comentario = {
+      id: id
+    }
+    this.comentariosService.borrar(comentario)
+      .subscribe((result) => {
+        console.log('result -> ', result);
+        this.router.navigate(['/experiencias']);
+      });
   }
 }
 

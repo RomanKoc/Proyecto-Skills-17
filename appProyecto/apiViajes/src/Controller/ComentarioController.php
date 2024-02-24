@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 
+
 #[Route('/comentario')]
 class ComentarioController extends AbstractController
 {
@@ -98,9 +99,33 @@ class ComentarioController extends AbstractController
         return new JsonResponse(['message' => 'Comentario modificado correctamente'], Response::HTTP_OK);
     }
 
-    #[Route('/{id}', name: 'app_comentario_delete', methods: ['GET', 'POST'])]
-    public function delete(Comentario $comentario, EntityManagerInterface $entityManager): Response
+    /* #[Route('/borrar', name: 'app_comentario_delete', methods: ['GET', 'POST'])]
+    public function delete(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $data = json_decode($request->getContent(), true);
+        $usuarioId = $data['id'];
+
+        $entityManager->remove($comentario);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Comentario eliminado correctamente'], Response::HTTP_OK);
+    } */
+    #[Route('/borrar', name: 'app_comentario_delete', methods: ['POST'])]
+    public function delete(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $comentarioId = $data['id']; // Suponiendo que el ID del comentario está en el campo 'id' del JSON
+
+        // Buscar el comentario por su ID
+        $comentarioRepository = $entityManager->getRepository(Comentario::class);
+        $comentario = $comentarioRepository->find($comentarioId);
+
+        // Verificar si se encontró el comentario
+        if (!$comentario) {
+            return new JsonResponse(['error' => 'Comentario no encontrado'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Eliminar el comentario
         $entityManager->remove($comentario);
         $entityManager->flush();
 

@@ -46,7 +46,7 @@
 <div class="container mt-3 mb-3" id="carrusel">
     <div class="row slider">
         <div class="col">
-            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="carousel" class="carousel" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @for (img of imagenes; track $index) {
                     @if (img.experiencia_id == exp.id) {
@@ -86,17 +86,22 @@
         <div class="col-md-8">
             <h2>Comentarios</h2>
         </div>
+        @for (coment of comentarios; track $index) {
+        @if(coment.experiencia.id == exp.id){
         <div class="col-sm-11 col-10 card mx-5">
-            @for (coment of comentarios; track $index) {
-            @if(coment.experiencia.id == exp.id){
             <div class="card-body">
                 <h5 class="card-title">{{coment.usuario.nombre}}</h5>
                 <p class="card-text">{{coment.texto}}</p>
                 <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
             </div>
-            }
+            @if (coment.usuario.id == userId) {
+            <button type="button" (click)="borrarComentario(coment.id)">borrar coincide </button>
+            }@else {
+            <button disabled>borrar no coindice</button>
             }
         </div>
+        }
+        }
 
     </div>
 </div>

@@ -15,4 +15,8 @@ export class ComentariosService {
   /*   insertarComentario(comentario: any) {
       return this.http.post('http://127.0.0.1:8000/comentario/new', comentario);
     } */
+
+  borrar(comentario: any) {
+    return this.http.post('http://127.0.0.1:8000/comentario/borrar', comentario); 
+  }
 }
