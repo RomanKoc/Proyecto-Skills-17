@@ -10,16 +10,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\CategoriaRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/subcategoria')]
 class SubcategoriaController extends AbstractController
 {
-    #[Route('/', name: 'app_subcategoria_index', methods: ['GET'])]
-    public function index(SubcategoriaRepository $subcategoriaRepository): Response
+    #[Route('/', name: 'app_categorias_index', methods: ['GET'])]
+    public function index(CategoriaRepository $categoriaRepository, SubcategoriaRepository $subcategoriaRepository): JsonResponse
     {
-        return $this->render('subcategoria/index.html.twig', [
-            'subcategorias' => $subcategoriaRepository->findAll(),
-        ]);
+        $categorias = $categoriaRepository->findAll();
+        $categoriasArray = [];
+
+        foreach ($categorias as $categoria) {
+            $subcategoriasArray = [];
+            foreach ($categoria->getSubcategorias() as $subcategoria) {
+                $subcategoriasArray[] = [
+                    'id' => $subcategoria->getId(),
+                    'nombre' => $subcategoria->getNombre(),
+                ];
+            }
+
+            $categoriasArray[] = [
+                'id' => $categoria->getId(),
+                'nombre' => $categoria->getNombre(),
+                'subcategorias' => $subcategoriasArray,
+            ];
+        }
+
+        return new JsonResponse($categoriasArray);
     }
 
     #[Route('/new', name: 'app_subcategoria_new', methods: ['GET', 'POST'])]
@@ -71,7 +90,7 @@ class SubcategoriaController extends AbstractController
     #[Route('/{id}', name: 'app_subcategoria_delete', methods: ['POST'])]
     public function delete(Request $request, Subcategoria $subcategorium, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$subcategorium->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $subcategorium->getId(), $request->request->get('_token'))) {
             $entityManager->remove($subcategorium);
             $entityManager->flush();
         }

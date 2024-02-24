@@ -24,14 +24,16 @@
         <div class="row">
             <div class="col-md-6">
                 <select class="form-select mt-3">
-                    <option>Categoria</option>
-                    <option>Turismo</option>
+                    @for (categoria of subcategorias; track $index) {
+                    <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                    }
                 </select>
             </div>
             <div class="col-md-6">
                 <select class="form-select mt-3" formControlName="subcategoria">
-                    <option>Subcategoria</option>
-                    <option>Montaña</option>
+                    @for (subcategoria of subcategorias; track $index) {
+                    <option value="{{subcategoria.id}}">{{subcategoria.nombre}}</option>
+                    }
                 </select>
             </div>
         </div>

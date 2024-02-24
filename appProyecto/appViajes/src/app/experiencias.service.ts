@@ -13,8 +13,4 @@ export class ExperienciasService {
   insertarExperiencia(experiencia: any) {
     return this.http.post('http://127.0.0.1:8000/experiencia/new', experiencia);
   }
-  /* 
-  insertarExperiencia(experiencia: any) {
-    return this.http.post('http://127.0.0.1:8000/experiencia/newFija', experiencia);
-  } */
 }
