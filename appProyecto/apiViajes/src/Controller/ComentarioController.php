@@ -43,8 +43,8 @@ class ComentarioController extends AbstractController
                     ],
                 ];
             }
-            return new JsonResponse($comentariosArray);
         }
+        return new JsonResponse($comentariosArray);
     }
     #[Route('/comentario/new', name: 'app_comentario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
