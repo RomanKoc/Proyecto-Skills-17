@@ -14,6 +14,7 @@ import { ImagenesService } from '../imagenes.service';
 export class ExperienciaNuevaComponent {
   userId: any;
   localizaciones: any;
+  subcategorias: any;
  
   formularioExperiencia = new FormGroup({
     titulo: new FormControl(''),

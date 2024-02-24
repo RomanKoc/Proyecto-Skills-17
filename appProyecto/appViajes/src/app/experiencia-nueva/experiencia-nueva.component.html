@@ -19,16 +19,6 @@
                     <label for="floatingFecha">Fecha</label>
                 </div>
             </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-floating mt-2">
-                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"></textarea>
-                    <label for="floatingTexto">Texto</label>
-                </div>
-            </div>
         </div>
 
         <div class="row">
@@ -47,43 +37,34 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <select class="form-select mt-3">
-                    <option>Provincia</option>
-                    <option>Valladolid</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <select class="form-select mt-3">
-                    <option>Comunidades</option>
-                    <option>Castilla y León</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-6 mt-3">
                 <input list="municipio" name="municipio" formControlName="localizacion" placeholder="Municipio"
-                    style="width: 100%; height: 35px;">
+                    style="width: 100%; height: 42px;">
                 <datalist id="municipio">
-                    <option value="Carrion">Carrion</option>
-                    <option value="Saldaña">Saldaña</option>
-                    <option value="Aguilar">Aguilar</option>
-                    <option value="Guardo">Guardo</option>
-                    <option value="Alar">Alar</option>
+                    @for (item of localizaciones; track $index) {
+                    <option value="{{item.nombre}}">{{item.nombre}}</option>
+                    <option value="fresa">fresa</option>
+                    }
                 </datalist>
             </div>
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center mt-3">
                 <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion"
                     style="width: 100%; height: 40px;" max="10" min="1">
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-floating mt-3">
+                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"></textarea>
+                    <label for="floatingTexto">Texto</label>
+                </div>
+            </div>
+        </div>
 
         <!-- Sexta fila -->
-        <div class="row mt-4">
+        <div class="row mt-3">
             <div class="col-md-6">
-                <input type="file" class="form-control" disabled multiple
-         accept="image/png, image/jpeg, image/jpg">
+                <input type="file" class="form-control" disabled multiple accept="image/png, image/jpeg, image/jpg">
             </div>
             <div class="col-md-6 d-flex justify-content-center mb-3">
                 <button class="btn btn-lg" type="submit"
