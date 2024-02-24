@@ -3,43 +3,66 @@
 namespace App\Controller;
 
 use App\Entity\Comentario;
-use App\Form\ComentarioType;
+use App\Entity\Usuario;
+use App\Entity\Experiencia;
 use App\Repository\ComentarioRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+
 
 #[Route('/comentario')]
 class ComentarioController extends AbstractController
 {
     #[Route('/', name: 'app_comentario_index', methods: ['GET'])]
-    public function index(ComentarioRepository $comentarioRepository): Response
+    public function index(ComentarioRepository $comentarioRepository): JsonResponse
     {
-        return $this->render('comentario/index.html.twig', [
-            'comentarios' => $comentarioRepository->findAll(),
-        ]);
+        $comentarios = $comentarioRepository->findAll();
+
+        $comentariosArray = [];
+        foreach ($comentarios as $comentario) {
+            $comentariosArray[] = [
+                'id' => $comentario->getId(),
+                'texto' => $comentario->getTexto(),
+                'fecha' => $comentario->getFecha()->format('Y-m-d'),
+                'usuario' => [
+                    'id' => $comentario->getUsuario()->getId(),
+                    'nombre' => $comentario->getUsuario()->getNombre(),
+                ],
+                'experiencia' => [
+                    'id' => $comentario->getExperiencia()->getId(),
+                    'titulo' => $comentario->getExperiencia()->getTitulo(),
+                ],
+            ];
+        }
+        return new JsonResponse($comentariosArray);
     }
 
-    #[Route('/new', name: 'app_comentario_new', methods: ['GET', 'POST'])]
+    #[Route('/comentario/new', name: 'app_comentario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $data = json_decode($request->getContent(), true);
+
         $comentario = new Comentario();
-        $form = $this->createForm(ComentarioType::class, $comentario);
-        $form->handleRequest($request);
+        $comentario->setTexto($data['texto']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($comentario);
-            $entityManager->flush();
+        $fecha = new \DateTime($data['fecha']);
+        $comentario->setFecha($fecha);
 
-            return $this->redirectToRoute('app_comentario_index', [], Response::HTTP_SEE_OTHER);
-        }
+        $usuario = $entityManager->getRepository(Usuario::class)->find($data['usuario_id']);
+        $experiencia = $entityManager->getRepository(Experiencia::class)->find($data['experiencia_id']);
 
-        return $this->render('comentario/new.html.twig', [
-            'comentario' => $comentario,
-            'form' => $form,
-        ]);
+        $comentario->setUsuario($usuario);
+        $comentario->setExperiencia($experiencia);
+
+        $entityManager->persist($comentario);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Comentario insertado correctamente'], Response::HTTP_CREATED);
     }
 
     #[Route('/{id}', name: 'app_comentario_show', methods: ['GET'])]
@@ -50,32 +73,33 @@ class ComentarioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_comentario_edit', methods: ['GET', 'POST'])]
+    #[Route('/comentario/{id}/edit', name: 'app_comentario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comentario $comentario, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(ComentarioType::class, $comentario);
-        $form->handleRequest($request);
+        $data = json_decode($request->getContent(), true);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        $comentario->setTexto($data['texto']);
 
-            return $this->redirectToRoute('app_comentario_index', [], Response::HTTP_SEE_OTHER);
-        }
+        $fecha = new \DateTime($data['fecha']);
+        $comentario->setFecha($fecha);
 
-        return $this->render('comentario/edit.html.twig', [
-            'comentario' => $comentario,
-            'form' => $form,
-        ]);
+        $usuario = $entityManager->getRepository(Usuario::class)->find($data['usuario_id']);
+        $experiencia = $entityManager->getRepository(Experiencia::class)->find($data['experiencia_id']);
+
+        $comentario->setUsuario($usuario);
+        $comentario->setExperiencia($experiencia);
+
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Comentario modificado correctamente'], Response::HTTP_OK);
     }
 
-    #[Route('/{id}', name: 'app_comentario_delete', methods: ['POST'])]
-    public function delete(Request $request, Comentario $comentario, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_comentario_delete', methods: ['GET', 'POST'])]
+    public function delete(Comentario $comentario, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$comentario->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($comentario);
-            $entityManager->flush();
-        }
+        $entityManager->remove($comentario);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('app_comentario_index', [], Response::HTTP_SEE_OTHER);
+        return new JsonResponse(['message' => 'Comentario eliminado correctamente'], Response::HTTP_OK);
     }
 }
