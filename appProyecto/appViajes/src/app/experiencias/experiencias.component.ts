@@ -1,23 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExperienciasService } from '../experiencias.service';
 import { ApiImagenService } from '../api-imagen.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-experiencias',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './experiencias.component.html',
   styleUrl: './experiencias.component.css'
 })
 export class ExperienciasComponent {
 
+
   userId = 'not';
   experiencias: any = [];
   imagenes: any = [];
+  buscador = "";
 
   obtenerPrimeraImagenPorExperiencia(experienciaId: number): any {
     return this.imagenes.find((img: any) => img.experiencia_id === experienciaId);
@@ -36,13 +39,13 @@ export class ExperienciasComponent {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        /* console.log('result -> ', result); */
+        console.log('result -> ', result);
         this.experiencias = result;
       });
 
     this.apiImagen.retornar()
       .subscribe((resultado: any) => { // Explicitly specify the type of 'resultado' parameter as 'any'
-        /* console.log('result -> ', resultado); */
+        console.log('result -> ', resultado);
         this.imagenes = resultado
       });
   }
@@ -65,5 +68,23 @@ export class ExperienciasComponent {
     }
     return false;
   }
+
+  comprobarUsuario(usuario: string) {
+    const usuariolw = usuario.toLowerCase();
+    const buscadolw = this.buscador.toLowerCase();
+
+    if (this.buscador == "") {
+      return true;
+
+    } else {
+      if (usuariolw.includes(buscadolw)) {
+        return true;
+      }
+    }
+    return false;
+
+  }
+
+
 
 }

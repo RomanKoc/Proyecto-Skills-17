@@ -1,5 +1,15 @@
+<!-- <form class="d-flex pt-5 px-5 pb-2">
+    <input class="form-control me-2" type="search" placeholder="Buscar experiencia.." aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form> -->
+<div>Buscar:
+    <input type="text" [(ngModel)]="buscador">
+</div>
+
+
 <div id="contenedor">
     @for (exp of experiencias; track exp.id) {
+    @if (comprobarUsuario(exp.titulo)) {
     <div class="card" style="width: 24rem;margin:1rem">
         @if (obtenerNombreImagenPorExperiencia(exp) != 'false' ) {
         <img src="data:image;base64,{{ obtenerNombreImagenPorExperiencia(exp) }}" class="card-img-top" alt="..."
@@ -27,5 +37,6 @@
             </div>
         </div>
     </div>
+    }
     }
 </div>
