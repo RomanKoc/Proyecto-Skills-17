@@ -6,6 +6,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { InfoUsuarioComponent } from './info-usuario/info-usuario.component';
 import { ExperienciaIndividualComponent } from './experiencia-individual/experiencia-individual.component';
 import { ExperienciaNuevaComponent } from './experiencia-nueva/experiencia-nueva.component';
+
 export const routes: Routes = [
     {
         path: '',

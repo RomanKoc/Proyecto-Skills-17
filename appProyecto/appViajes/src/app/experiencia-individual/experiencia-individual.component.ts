@@ -6,6 +6,7 @@ import { ExperienciasService } from '../experiencias.service';
 import { ApiImagenService } from '../api-imagen.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ComentariosService } from '../comentarios-service.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { ComentariosService } from '../comentarios-service.service';
 })
 export class ExperienciaIndividualComponent {
 
+  /* id -> id de la experiencia */
   id = '0';
   experiencias: any = [];
   comentarios: any = [];
@@ -41,13 +43,13 @@ export class ExperienciaIndividualComponent {
     this.comentariosService.retornar()
       .subscribe((result) => {
         this.comentarios = result;
-        console.log(this.comentarios);
+        /* console.log(this.comentarios); */
       })
 
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         this.experiencias = result;
       });
 
@@ -57,7 +59,7 @@ export class ExperienciaIndividualComponent {
       });
 
     this.parametroRuta.paramMap.subscribe((params: ParamMap) => {
-      console.log('paramETRO -> ', params.get('id'));
+      /* console.log('paramETRO -> ', params.get('id')); */
       this.id = params.get('id')!
     });
     this.obtenerExperiencia(this.id);
@@ -65,7 +67,6 @@ export class ExperienciaIndividualComponent {
 
   /* ME QUEDA LA EXPERIENCIA */
   obtenerExperiencia(id: any) {
-    console.log('id experiencia -> ', id);
     const experieciaIndividual = this.experiencias.find((exp: any) => exp.usuario.id == id);
 
     console.log('experieciaIndividual -> ', experieciaIndividual);
@@ -79,8 +80,6 @@ export class ExperienciaIndividualComponent {
   }
 
   borrarComentario(id: any) {
-    console.log('borrando...');
-    console.log('id -> ', id);
     const comentario = {
       id: id
     }
@@ -88,6 +87,28 @@ export class ExperienciaIndividualComponent {
       .subscribe((result) => {
         console.log('result -> ', result);
         this.router.navigate(['/experiencias']);
+      });
+  }
+
+  formComent = new FormGroup({
+    texto: new FormControl('')
+  });
+
+  registrarComentario() {
+    const coment = {
+      texto: this.formComent.value.texto,
+      usuario_id: this.userId,
+      experiencia_id: this.id
+    };
+    console.log('comentJSON -> ', coment);
+    this.comentariosService.insertarComentario(coment)
+      .subscribe({
+        next: (response) => {
+          console.log('Comentario insertado correctamente:', response);
+        },
+        error: (error) => {
+          console.error('Error al insertar comentario:', error);
+        }
       });
   }
 }

@@ -47,7 +47,7 @@ class ComentarioController extends AbstractController
         }
         return new JsonResponse($comentariosArray);
     }
-    #[Route('/comentario/new', name: 'app_comentario_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_comentario_new', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
@@ -55,8 +55,9 @@ class ComentarioController extends AbstractController
         $comentario = new Comentario();
         $comentario->setTexto($data['texto']);
 
-        $fecha = new \DateTime($data['fecha']);
-        $comentario->setFecha($fecha);
+        // Establecer la fecha y hora actual
+        $fechaActual = new \DateTime();
+        $comentario->setFecha($fechaActual);
 
         $usuario = $entityManager->getRepository(Usuario::class)->find($data['usuario_id']);
         $experiencia = $entityManager->getRepository(Experiencia::class)->find($data['experiencia_id']);
@@ -69,6 +70,9 @@ class ComentarioController extends AbstractController
 
         return new JsonResponse(['message' => 'Comentario insertado correctamente'], Response::HTTP_CREATED);
     }
+
+
+
 
     #[Route('/{id}', name: 'app_comentario_show', methods: ['GET'])]
     public function show(Comentario $comentario): Response
