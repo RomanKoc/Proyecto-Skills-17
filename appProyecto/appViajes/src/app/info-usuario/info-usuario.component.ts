@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiPruebaService } from '../api-prueba.service';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import * as CryptoJS from 'crypto-js'; // Importar crypto-js
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-info-usuario',
@@ -76,7 +76,6 @@ export class InfoUsuarioComponent {
     const passwordValue = this.formularioRegistro.value.password;
     if (passwordValue) {
       const passwordEncriptada = CryptoJS.SHA256(passwordValue).toString();
-      // Actualiza el valor del campo password en el formulario:
       this.formularioRegistro.patchValue({ password: passwordEncriptada });
     }
   }
@@ -96,9 +95,9 @@ export class InfoUsuarioComponent {
       .subscribe({
         next: (response) => {
           console.log('Usuario ACTUALIZADO correctamente:', response);
-          /* this.router.navigate(['/login']).then(() => {
+          this.router.navigate(['/info-usuario']).then(() => {
             window.location.reload();
-          }); */
+          });
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);
