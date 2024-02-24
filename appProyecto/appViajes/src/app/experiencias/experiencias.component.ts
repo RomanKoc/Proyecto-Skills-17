@@ -51,7 +51,7 @@ export class ExperienciasComponent {
     if (imagen && imagen.nombre) {
       return imagen.nombre;
     }
-    return '';
+    return 'false';
   }
   prueba() {
     const id = 1;

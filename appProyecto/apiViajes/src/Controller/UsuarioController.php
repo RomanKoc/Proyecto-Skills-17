@@ -70,63 +70,45 @@ class UsuarioController extends AbstractController
 
         return new JsonResponse(['message' => 'Usuario insertado correctamente'], Response::HTTP_CREATED);
     }
-    /* #[Route('/new', name: 'app_usuario_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
-    {
-        try {
-            $data = json_decode($request->getContent(), true);
-
-            // Verificar si todos los campos requeridos están presentes
-            if (!isset($data['nombre'], $data['apellidos'], $data['mail'], $data['ciudad'], $data['password'])) {
-                throw new \InvalidArgumentException('Faltan datos requeridos');
-            }
-
-            // Crear una nueva instancia de Usuario y asignar los datos recibidos
-            $usuario = new Usuario();
-            $usuario->setNombre($data['nombre']);
-            $usuario->setApellidos($data['apellidos']);
-            $usuario->setMail($data['mail']);
-            $usuario->setCiudad($data['ciudad']);
-            $usuario->setPassword($data['password']);
-
-            $rolPorDefecto = $entityManager->getReference('App\Entity\Rol', 2);
-            $usuario->setRol($rolPorDefecto);
-
-            // Guardar el nuevo usuario en la base de datos
-            $entityManager->persist($usuario);
-            $entityManager->flush();
-
-            return new JsonResponse(['message' => 'Usuario insertado correctamente'], Response::HTTP_CREATED);
-        } catch (\Throwable $e) {
-            return new JsonResponse(['error' => $e->getMessage(), $request->getContent()]);
-        }
-    } */
-
-
-    /* ESTO SE PODRIA BORRAR */
-    /*  #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
-    public function show(Usuario $usuario): Response
-    {
-        return $this->render('usuario/show.html.twig', [
-            'usuario' => $usuario,
-        ]);
-    } */
 
     #[Route('/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
 
-        $usuario->setNombre($data['nombre']);
-        $usuario->setApellidos($data['apellidos']);
-        $usuario->setMail($data['mail']);
-        $usuario->setCiudad($data['ciudad']);
-        $usuario->setPassword($data['password']);
+        // Verifica si se proporcionó un ID de usuario
+        if (!isset($data['id'])) {
+            return new JsonResponse(['error' => 'Se requiere un ID de usuario para la edición'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $usuarioRepository = $entityManager->getRepository(Usuario::class);
+
+        $usuario = $usuarioRepository->find($data['id']);
+        if (!$usuario) {
+            return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
+        }
+        // Actualizar los datos del usuario con los datos proporcionados en la solicitud
+        if (isset($data['nombre'])) {
+            $usuario->setNombre($data['nombre']);
+        }
+        if (isset($data['apellidos'])) {
+            $usuario->setApellidos($data['apellidos']);
+        }
+        if (isset($data['mail'])) {
+            $usuario->setMail($data['mail']);
+        }
+        if (isset($data['ciudad'])) {
+            $usuario->setCiudad($data['ciudad']);
+        }
+        if (isset($data['password'])) {
+            $usuario->setPassword($data['password']);
+        }
 
         $entityManager->flush();
 
         return new JsonResponse(['message' => 'Usuario modificado correctamente'], Response::HTTP_OK);
     }
+
 
     #[Route('/delete', name: 'app_usuario_delete', methods: ['POST'])]
     public function delete(Request $request, EntityManagerInterface $entityManager): Response

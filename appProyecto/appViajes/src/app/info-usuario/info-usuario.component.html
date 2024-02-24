@@ -3,54 +3,50 @@
         <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
     </div>
 
-    <form method="post">
+    <form [formGroup]="formularioRegistro" (ngSubmit)="modificarUsuario()">
         <h3>Modificar Cuenta</h3>
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center ">
                 <div class="form-floating col-9 col-md-7">
-                    <input type="text" class="form-control" placeholder="Nombre" value="{{usuario?.nombre}}">
+                    <input type="text" class="form-control" placeholder="Nombre" value="{{usuario?.nombre}}"
+                        formControlName="nombre">
                     <label for="floatingInput">Nombre</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="text" class="form-control" placeholder="Apellidos" value="{{usuario?.apellidos}}">
+                    <input type="text" class="form-control" placeholder="Apellidos" value="{{usuario?.apellidos}}"
+                        formControlName="apellidos">
                     <label for="floatingInput">Apellidos</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" value="{{usuario.mail}}">
+                    <input type="email" class="form-control" value="{{usuario.mail}}" formControlName="mail">
                     <label for="floatingInput">Correo</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="text" class="form-control" placeholder="Ciudad" value="{{usuario.ciudad}}">
+                    <input type="text" class="form-control" placeholder="Ciudad" value="{{usuario.ciudad}}"
+                        formControlName="ciudad">
                     <label for="floatingInput">Ciudad</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="password" class="form-control" placeholder="Cambiar contraseña" value="">
+                    <input type="password" class="form-control" placeholder="Cambiar contraseña" value=""
+                        formControlName="password">
                     <label for="floatingInput">Cambiar contraseña</label>
                 </div>
             </div>
 
-            <div class="col-md-12 d-flex justify-content-center">
-                <div class="form-floating mt-2 col-9 col-md-7">
-                    <button class="w-50 btn btn-lg" type="submit" style="background-color: #f78536;">
-                        <a href="cambiarContra.html">Cambiar Contraseña</a>
-                        <!-- DEBE DE SER UNA RUTA Y CAMBIAR CONTRASEÑA o ponerlo todo en la misma POR TIEMPO! -->
-                    </button>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-center mt-2 mb-3">
+            <div class="d-flex justify-content-center gap-5 mt-2 mb-3">
+                <button class="w-25 btn btn-lg" type="button" style="background-color: #f78536;" (click)="borrarUsuario()">Darse de baja</button>
                 <button class="w-25 btn btn-lg" type="submit" style="background-color: #f78536;">Actualizar
                     cuenta</button>
             </div>
