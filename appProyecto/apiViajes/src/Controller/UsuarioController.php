@@ -104,7 +104,7 @@ class UsuarioController extends AbstractController
 
 
     /* ESTO SE PODRIA BORRAR */
-   /*  #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
+    /*  #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
     public function show(Usuario $usuario): Response
     {
         return $this->render('usuario/show.html.twig', [
@@ -112,7 +112,7 @@ class UsuarioController extends AbstractController
         ]);
     } */
 
-    #[Route('/{id}/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
@@ -128,9 +128,23 @@ class UsuarioController extends AbstractController
         return new JsonResponse(['message' => 'Usuario modificado correctamente'], Response::HTTP_OK);
     }
 
-    #[Route('/{id}', name: 'app_usuario_delete', methods: ['POST'])]
-    public function delete(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
+    #[Route('/delete', name: 'app_usuario_delete', methods: ['POST'])]
+    public function delete(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Obtener el ID del usuario a eliminar del cuerpo de la solicitud JSON
+        $data = json_decode($request->getContent(), true);
+        $usuarioId = $data['id']; // Suponiendo que el ID del usuario está en el campo 'id' del JSON
+
+        // Buscar el usuario por su ID
+        $usuarioRepository = $entityManager->getRepository(Usuario::class);
+        $usuario = $usuarioRepository->find($usuarioId);
+
+        // Verificar si se encontró el usuario
+        if (!$usuario) {
+            return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Eliminar el usuario
         $entityManager->remove($usuario);
         $entityManager->flush();
 

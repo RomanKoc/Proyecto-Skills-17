@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiPruebaService } from '../api-prueba.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-usuario',
@@ -23,7 +24,7 @@ export class InfoUsuarioComponent {
     }
   }
 
-  constructor(private usuariosService: ApiPruebaService) {
+  constructor(private usuariosService: ApiPruebaService, private router: Router) {
     this.usuariosService.retornar()
       .subscribe((result) => {
         /* console.log('result -> ', result); */
@@ -38,4 +39,27 @@ export class InfoUsuarioComponent {
 
       });
   }
+  cerrarSesion() {
+    localStorage.removeItem('userId');
+    this.userId = 'not';
+  }
+  borrarUsuario() {
+    const usuario = {
+      id: this.userId,
+    };
+    this.usuariosService.borrar(usuario)
+      .subscribe({
+        next: (response) => {
+          console.log('Usuario BORRADO correctamente:', response);
+          this.cerrarSesion();
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        },
+        error: (error) => {
+          console.error('Error al BORRAR usuario:', error);
+          alert('Error al BORRAR usuario');
+        }
+      })
+  };
 }
