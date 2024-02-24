@@ -25,23 +25,27 @@ class ComentarioController extends AbstractController
 
         $comentariosArray = [];
         foreach ($comentarios as $comentario) {
-            $comentariosArray[] = [
-                'id' => $comentario->getId(),
-                'texto' => $comentario->getTexto(),
-                'fecha' => $comentario->getFecha()->format('Y-m-d'),
-                'usuario' => [
-                    'id' => $comentario->getUsuario()->getId(),
-                    'nombre' => $comentario->getUsuario()->getNombre(),
-                ],
-                'experiencia' => [
-                    'id' => $comentario->getExperiencia()->getId(),
-                    'titulo' => $comentario->getExperiencia()->getTitulo(),
-                ],
-            ];
-        }
-        return new JsonResponse($comentariosArray);
-    }
+            $fechaFormateada = '';
+            if ($comentario->getFecha() !== null) {
+                $fechaFormateada = $comentario->getFecha()->format('Y-m-d');
 
+                $comentariosArray[] = [
+                    'id' => $comentario->getId(),
+                    'texto' => $comentario->getTexto(),
+                    'fecha' => $fechaFormateada,
+                    'usuario' => [
+                        'id' => $comentario->getUsuario()->getId(),
+                        'nombre' => $comentario->getUsuario()->getNombre(),
+                    ],
+                    'experiencia' => [
+                        'id' => $comentario->getExperiencia()->getId(),
+                        'titulo' => $comentario->getExperiencia()->getTitulo(),
+                    ],
+                ];
+            }
+            return new JsonResponse($comentariosArray);
+        }
+    }
     #[Route('/comentario/new', name: 'app_comentario_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

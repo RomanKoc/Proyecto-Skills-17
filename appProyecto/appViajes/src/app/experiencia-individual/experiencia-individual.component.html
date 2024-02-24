@@ -87,14 +87,17 @@
             <h2>Comentarios</h2>
         </div>
         <div class="col-sm-11 col-10 card mx-5">
+            @for (coment of comentarios; track $index) {
+            @if(coment.experiencia.id == exp.id){
             <div class="card-body">
-                <h5 class="card-title">Usuario</h5>
-                <p class="card-text">La vida es como montar en bicicleta. Para mantener el equilibrio, debes seguir
-                    adelante. Atrévete a explorar nuevos horizontes, a desafiarte a ti mismo y a crecer en cada pedaleo.
-                    ¡Disfruta del viaje!</p>
-                <p class="card-text">Usuario<br><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">{{coment.usuario.nombre}}</h5>
+                <p class="card-text">{{coment.texto}}</p>
+                <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
             </div>
+            }
+            }
         </div>
+
     </div>
 </div>
 }

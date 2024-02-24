@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ExperienciasService } from '../experiencias.service';
 import { ApiImagenService } from '../api-imagen.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ComentariosService } from '../comentarios-service.service';
 
 @Component({
   selector: 'app-experiencia-individual',
@@ -19,9 +20,16 @@ export class ExperienciaIndividualComponent {
   experiencias: any = [];
   experienciaUsuario: any;
   imagenes: any = [];
+  comentarios: any = [];
+
+  logitudComentario() {
+    console.log('comentariosLongitud -> ', this.comentarios);
+    return this.comentarios.length;
+  }
 
   constructor(private router: Router, private experienciaServ: ExperienciasService,
-    private apiImagen: ApiImagenService, private parametroRuta: ActivatedRoute) {
+    private apiImagen: ApiImagenService, private parametroRuta: ActivatedRoute,
+    private comentariosService: ComentariosService) {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
@@ -38,6 +46,11 @@ export class ExperienciaIndividualComponent {
       console.log('paramETRO -> ', params.get('id'));
       this.id = params.get('id')! // obtiene id de la ruta
     });
+    this.comentariosService.retornar()
+      .subscribe((result) => {
+        this.comentarios = result;
+        console.log(this.comentarios);
+      })
     this.obtenerExperiencia(this.id);
   }
   /* ME QUEDA LA EXPERIENCIA */
