@@ -11,17 +11,16 @@ import { ImgService } from '../img.service';
   styleUrl: './img.component.css'
 })
 export class ImgComponent {
-  /* selectedFile: File = null ; */
-  selectedFile: any;
+  selectedFile: File | null = null;
   constructor(private imgServicio: ImgService) { }
 
   formImg = new FormGroup({
     imagen: new FormControl('')
   });
-
+  
   cargarImagen(event: any) {
     console.log('cargarImagen');
-    this.selectedFile = <File>event.target.files[0]
+    this.selectedFile = event.target.files[0];
   }
 
   enviarImagen() {
