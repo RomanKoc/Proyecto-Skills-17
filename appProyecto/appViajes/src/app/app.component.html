@@ -51,18 +51,19 @@
             @if (desactivarPorID()) {
             <a class="nav-link" aria-current="page" aria-disabled="true" href="experiencia-nueva">Añadir experiencia</a>
             } @else {
-            <a class="nav-link disabled text-secondary" aria-current="page" aria-disabled="false" href="#">Añadir experiencia</a>
+            <a class="nav-link disabled text-secondary" aria-current="page" aria-disabled="false" href="#">Añadir
+              experiencia</a>
             }
           </li>
 
         </ul>
-        <div>
-          <p>esto va a ser el usuario</p>
+        <div class="d-flex">
+          @if (userId != 'not') {
+          <p class="text-white">{{usuario.nombre}} {{usuario.apellidos}}</p>
+          }@else {
+          <p class="text-white">No se ha iniciado sesion</p>
+          }
         </div>
-        <!-- <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Buscar.." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form> -->
       </div>
     </div>
   </nav>
