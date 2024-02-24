@@ -43,7 +43,7 @@ export class ExperienciaNuevaComponent {
   });
 
   registrarExperiencia() {
-    const experiencia = {
+    /* const experiencia = {
       titulo: this.formularioExperiencia.value.titulo,
       texto: this.formularioExperiencia.value.texto,
       puntuacion: this.formularioExperiencia.value.puntuacion,
@@ -51,9 +51,9 @@ export class ExperienciaNuevaComponent {
       usuario_id: this.userId,
       localizacion_id:1,
       subcategoria_id: 1,
-    };
+    }; */
     const puntuacion = parseInt(this.formularioExperiencia.value.puntuacion || '0');
-    /* const experiencia = {
+    const experiencia = {
       titulo: 'prueba2',
       texto: 'pruebatxt2',
       puntuacion: 5,
@@ -61,7 +61,7 @@ export class ExperienciaNuevaComponent {
       usuarioId: this.userId,
       localizacionId: 1,
       subcategoriaId: 1,
-    }; */
+    };
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {

@@ -188,19 +188,20 @@ class ExperienciaController extends AbstractController
         $experiencia->setLocalizacion($localizacion);
         $experiencia->setSubcategoria($subcategoria);
 
-        // Guardar la experiencia en la base de datos
         $entityManager->persist($experiencia);
         $entityManager->flush();
 
+        
         // Crear y asociar la imagen a la experiencia
-        $imagen = new Imagen();
-        $imagenBlob = file_get_contents('../public/img/default.jpg');
-        $imagen->setNombre($imagenBlob); // Reemplaza 'nombre_de_la_imagen.jpg' por el nombre de la imagen que deseas asociar
-        $imagen->setExperiencia($experiencia); /* dudo si esto funcionara */
+        //$imagen = new Imagen();
+        //$imagenBlob = file_get_contents('../public/img/default.jpg');
+        //$imagenBlob = base64_encode($imagenBlob);
+        //$imagen->setNombre($imagenBlob); // Reemplaza 'nombre_de_la_imagen.jpg' por el nombre de la imagen que deseas asociar
+        //$imagen->setExperiencia($experiencia); /* dudo si esto funcionara */
 
         // Guardar la imagen en la base de datos
-        $entityManager->persist($imagen);
-        $entityManager->flush();
+        //$entityManager->persist($imagen);
+        //$entityManager->flush();
 
         return new JsonResponse(['message' => 'Experiencia y imagen insertadas correctamente'], Response::HTTP_CREATED);
     }
