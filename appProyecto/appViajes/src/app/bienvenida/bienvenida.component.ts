@@ -17,6 +17,8 @@ export class BienvenidaComponent {
 
   experiencias: any = [];
   imagenes: any = [];
+  experienciasImprir: any = [];
+  experienciasP = ['Mejor puntuada', 'Última ingresada'];
 
   obtenerPrimeraImagenPorExperiencia(experienciaId: number): any {
     return this.imagenes.find((img: any) => img.experiencia_id === experienciaId);
@@ -29,6 +31,10 @@ export class BienvenidaComponent {
       .subscribe((result) => {
         /* console.log('result -> ', result); */
         this.experiencias = result;
+        this.obtenerExperiencias(this.experiencias);
+        /*         console.log(this.expMejor);
+                console.log(this.expUltima); */
+        console.log(this.experienciasImprir);
       });
 
     this.apiImagen.retornar()
@@ -36,6 +42,9 @@ export class BienvenidaComponent {
         /* console.log('result -> ', resultado); */
         this.imagenes = resultado
       });
+
+
+
   }
   obtenerNombreImagenPorExperiencia(experiencia: any): string {
     const imagen = this.imagenes.find((img: any) => img.experiencia_id === experiencia.id);
@@ -50,4 +59,25 @@ export class BienvenidaComponent {
       window.location.reload();
     });
   }
+
+  obtenerExperiencias(experiencias: any) {
+    // Inicializamos las variables para almacenar la mejor valorada y la última ingresada
+    var mejorValorada = experiencias[0];
+    var ultimaIngresada = experiencias[0];
+
+    // Recorremos el arreglo de experiencias
+    experiencias.forEach((experiencia: any) => {
+      // Comprobamos si la experiencia actual tiene una puntuación mayor que la mejor valorada
+      if (experiencia.puntuacion > mejorValorada.puntuacion) {
+        mejorValorada = experiencia;
+      }
+      // Comprobamos si la experiencia actual tiene una fecha más reciente que la última ingresada
+      if (experiencia.fecha > ultimaIngresada.fecha) {
+        ultimaIngresada = experiencia;
+      }
+    });
+    this.experienciasImprir.push(mejorValorada);
+    this.experienciasImprir.push(ultimaIngresada);
+  }
+
 }
