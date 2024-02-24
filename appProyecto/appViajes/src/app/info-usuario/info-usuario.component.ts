@@ -84,20 +84,13 @@ export class InfoUsuarioComponent {
   modificarUsuario() {
     this.encriptarPasswd();
     const usuario = {
-      nombre: this.formularioRegistro.value.nombre,
-      apellidos: this.formularioRegistro.value.apellidos,
-      mail: this.formularioRegistro.value.mail,
-      ciudad: this.formularioRegistro.value.ciudad,
-      password: this.formularioRegistro.value.password
-    };
-    /* const usuario = {
       id: this.userId,
-      nombre: 'fresa',
-      apellidos: '',
-      mail: 'a@fresa',
-      ciudad: '',
-      password: 'a'
-    }; */
+      nombre: this.formularioRegistro.get('nombre')?.value ?? '',
+      apellidos: this.formularioRegistro.get('apellidos')?.value ?? '',
+      mail: this.formularioRegistro.get('mail')?.value ?? '',
+      ciudad: this.formularioRegistro.get('ciudad')?.value ?? '',
+      password: this.formularioRegistro.get('password')?.value ?? ''
+    };
     console.log('usuarioCLS -> ', usuario);
     this.usuariosService.modificarUsuario(usuario)
       .subscribe({
