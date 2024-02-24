@@ -2,14 +2,16 @@
     <input class="form-control me-2" type="search" placeholder="Buscar experiencia.." aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Buscar</button>
 </form> -->
-<div>Buscar:
-    <input type="text" [(ngModel)]="buscador">
+<div class="p-3 mx-3 mt-2">
+    <input placeholder="Buscar experiencia.." class="form-control mx-2" type="text" aria-label="Search"
+        [(ngModel)]="buscador" >
+        <!-- style="max-width: 500px;" -->
 </div>
 
 
 <div id="contenedor">
     @for (exp of experiencias; track exp.id) {
-    @if (comprobarUsuario(exp.titulo)) {
+    @if (comprobarExperiencia(exp.titulo)) {
     <div class="card" style="width: 24rem;margin:1rem">
         @if (obtenerNombreImagenPorExperiencia(exp) != 'false' ) {
         <img src="data:image;base64,{{ obtenerNombreImagenPorExperiencia(exp) }}" class="card-img-top" alt="..."

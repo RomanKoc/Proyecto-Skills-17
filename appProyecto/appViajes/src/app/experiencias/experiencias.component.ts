@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class ExperienciasComponent {
 
-
   userId = 'not';
   experiencias: any = [];
   imagenes: any = [];
@@ -69,7 +68,7 @@ export class ExperienciasComponent {
     return false;
   }
 
-  comprobarUsuario(usuario: string) {
+  comprobarExperiencia(usuario: string) {
     const usuariolw = usuario.toLowerCase();
     const buscadolw = this.buscador.toLowerCase();
 
