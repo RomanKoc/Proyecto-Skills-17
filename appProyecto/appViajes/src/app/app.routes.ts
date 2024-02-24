@@ -42,10 +42,6 @@ export const routes: Routes = [
         component: ExperienciaNuevaComponent
     },
     {
-        path: 'imagen',
-        component: ImgComponent
-    },
-    {
         path: '**',
         redirectTo: 'bienvenida'
     }
