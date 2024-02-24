@@ -16,6 +16,7 @@ use App\Entity\Usuario;
 use App\Entity\Localizacion;
 use App\Entity\Comentario;
 use App\Entity\Subcategoria;
+use App\Entity\Imagen;
 
 #[Route('/experiencia')]
 class ExperienciaController extends AbstractController
@@ -141,6 +142,67 @@ class ExperienciaController extends AbstractController
         $entityManager->flush();
 
         return new JsonResponse(['message' => 'Experiencia insertada correctamente'], Response::HTTP_CREATED);
+    }
+
+    /* PRUEBA PARA INSERTAR UNA IMG FIJA */
+    #[Route('/newFija', name: 'app_experiencia_newFija', methods: ['GET', 'POST'])]
+    public function imgFija(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        // Obtener los datos de la solicitud JSON
+        $data = json_decode($request->getContent(), true);
+
+        $usuarioRepository = $entityManager->getRepository(Usuario::class);
+        $usuario = $usuarioRepository->find($data['usuarioId']);
+
+        // Verificar si se encontró el usuario
+        if (!$usuario) {
+            return new JsonResponse(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Buscar la localización por ID
+        $localizacionRepository = $entityManager->getRepository(Localizacion::class);
+        $localizacion = $localizacionRepository->find($data['localizacionId']);
+
+        // Verificar si se encontró la localización
+        if (!$localizacion) {
+            return new JsonResponse(['error' => 'Localización no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Buscar la subcategoría por ID
+        $subcategoriaRepository = $entityManager->getRepository(Subcategoria::class);
+        $subcategoria = $subcategoriaRepository->find($data['subcategoriaId']);
+
+        // Verificar si se encontró la subcategoría
+        if (!$subcategoria) {
+            return new JsonResponse(['error' => 'Subcategoría no encontrada'], Response::HTTP_NOT_FOUND);
+        }
+
+        $fecha = \DateTime::createFromFormat('Y-m-d', $data['fecha']);
+
+        $experiencia = new Experiencia();
+        $experiencia->setTitulo($data['titulo']);
+        $experiencia->setTexto($data['texto']);
+        $experiencia->setPuntuacion($data['puntuacion']);
+        $experiencia->setFecha($fecha);
+        $experiencia->setUsuario($usuario);
+        $experiencia->setLocalizacion($localizacion);
+        $experiencia->setSubcategoria($subcategoria);
+
+        // Guardar la experiencia en la base de datos
+        $entityManager->persist($experiencia);
+        $entityManager->flush();
+
+        // Crear y asociar la imagen a la experiencia
+        $imagen = new Imagen();
+        $imagenBlob = file_get_contents('../public/img/default.jpg');
+        $imagen->setNombre($imagenBlob); // Reemplaza 'nombre_de_la_imagen.jpg' por el nombre de la imagen que deseas asociar
+        $imagen->setExperiencia($experiencia); /* dudo si esto funcionara */
+
+        // Guardar la imagen en la base de datos
+        $entityManager->persist($imagen);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Experiencia y imagen insertadas correctamente'], Response::HTTP_CREATED);
     }
 
     /* #[Route('/{id}', name: 'app_experiencia_show', methods: ['GET'])]
