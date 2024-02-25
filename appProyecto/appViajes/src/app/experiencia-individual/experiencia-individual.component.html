@@ -10,7 +10,7 @@
 </div>
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0 mx-sm-5">
-        <div class="col mx-3">
+        <div class="col mx-2">
             <p><i class="bi bi-pencil-fill"></i> {{exp.texto}}</p>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
-        <div class="col mx-3">
+        <div class="col mx-2">
             <p><i class="bi bi-crosshair"></i><strong> {{exp.localizacion.nombre}}</strong>,
                 {{exp.localizacion.provincia.nombre}}
                 ({{exp.localizacion.provincia.comunidad.nombre}}).</p>
@@ -28,7 +28,7 @@
 
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
-        <div class="col mx-3">
+        <div class="col mx-2">
             <p><i class="bi bi-person-lines-fill"></i> Publicado por <strong>{{exp.usuario.nombre}} </strong></p>
             <p><i class="bi bi-calendar-date-fill"></i> {{exp.fecha}}</p>
         </div>
@@ -36,14 +36,13 @@
 </div>
 <div class="container mt-3 mb-3">
     <div class="row slider mx-0  mx-sm-5">
-        <div class="col mx-3 d-flex justify-content-between">
+        <div class="col mx-2 d-flex justify-content-between">
             <p><i class="bi bi-suit-heart-fill"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
             @if (exp.usuario.id == userId) {
-            <button type="button" class="btn btn-primary" (click)="borrarExperiencia(exp.id)">Realizar
-                comentario</button>
+            <button type="button" class="btn btn-primary" (click)="borrarExperiencia(exp.id)">Borrar
+                experiencia</button>
             }@else {
-            <button disabled type="button" class="btn btn-primary">Realizar
-                comentario</button>
+            <button disabled type="button" class="btn btn-primary">Borrar experiencia</button>
             }
         </div>
     </div>
@@ -55,7 +54,6 @@
         <div class="col-12 col-md-6 d-flex justify-content-center">
             <img src="data:image;base64,{{img.nombre}}" class="img-thumbnail mx-4 mt-3"
                 style="max-width: 600px; width: 100%;" alt="imagen_{{img.id}}">
-
         </div>
         }
         }
@@ -86,49 +84,46 @@
     </div>
 </div> -->
 
-<div class="container mt-4 mb-5 d-flex">
+<div class="container mt-4 d-flex">
     <div class="row">
-        <div class="col-md-8">
-            <h2>Comentarios</h2>
-            <div class="container contact-form mt-3 col-xl-12 col-lg-12 col-md-12 col-11 mx-4">
+        <div class="col-12">
+            <div class="container contact-form mt-3 col-12 p-3">
                 <form method="post" [formGroup]="formComent" (ngSubmit)="registrarComentario()">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mt-4">
-                                <textarea class="form-control" placeholder="Texto" formControlName="texto"></textarea>
-                                <label for="floatingTexto">Texto</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 d-flex justify-content-start mt-4 mb-4">
+                    <div class="form-floating mt-4">
+                        <textarea class="form-control" placeholder="Texto" formControlName="texto"></textarea>
+                        <label for="floatingTexto">Añadir un comentario</label>
+                        <div class="d-flex justify-content-end">
                             @if (desactivarPorID()) {
-                            <button class="btn btn-lg" type="submit" style="background-color: #f78536;">Enviar
+                            <button class="btn mt-2 mb-3 " type="submit" style="background-color: #f78536;">Enviar
                                 comentario</button>
                             } @else {
-                            <button class="btn btn-lg" type="submit" style="background-color: #f78536;" disabled>Enviar
+                            <button class="btn mt-2 mb-3" type="submit" style="background-color: #f78536;"
+                                disabled>Enviar
                                 comentario</button>
                             }
                         </div>
                     </div>
-
                 </form>
             </div>
 
         </div>
-        <hr>
+        <h2 class="p-3">Comentarios de usuarios</h2>
         @for (coment of comentarios; track $index) {
         @if(coment.experiencia.id == exp.id){
-        <div class="col-sm-11 col-10 card mx-5">
+
+        <div class="col-10 col-sm-10 col-md-11 card mx-5 mt-2 mb-2">
             <div class="card-body">
                 <h5 class="card-title">{{coment.usuario.nombre}}</h5>
                 <p class="card-text">{{coment.texto}}</p>
                 <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
+                <div class="d-flex justify-content-end">
+                    @if (coment.usuario.id == userId) {
+                    <button type="button" class="btn" (click)="borrarComentario(coment.id)">borrar coincide </button>
+                    }@else {
+                    <button class="btn" disabled>borrar no coindice</button>
+                    }
+                </div>
             </div>
-            @if (coment.usuario.id == userId) {
-            <button type="button" (click)="borrarComentario(coment.id)">borrar coincide </button>
-            }@else {
-            <button disabled>borrar no coindice</button>
-            }
         </div>
         }
         }

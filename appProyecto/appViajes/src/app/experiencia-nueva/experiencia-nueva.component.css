@@ -36,3 +36,14 @@
 .invalid input {
     border-color: red;
 }
+.btn-primary {
+    color: #000; 
+    background-color: #fc624d; 
+    border-color:#fc624d;
+}
+.btn-primary:hover {
+    color: #fff; 
+    background-color: #ff4747; 
+    border-color: #fc624d;  
+    transform: scale(1.05);
+}

@@ -26,10 +26,11 @@ nav {
     color: #000; /* Cambia el color del texto al hacer hover */
     background-color: #fc624d; /* Cambia el color de fondo al hacer hover */
     border-color: #fc624d;  /*ambia el color del borde al hacer hover */
+    transform: scale(1.05);
 }
 
 .btn-outline-primary{
-    color: #fff; /* Cambia el color del texto al hacer hover */
+    color: #000; /* Cambia el color del texto al hacer hover */
     border-color: #fc624d;
 }
     .btn-primary {
@@ -39,9 +40,10 @@ nav {
     }
 .btn-outline-primary:hover,
     .btn-primary:hover {
-        color: #000; /* Cambia el color del texto al hacer hover */
+        color: #fff; /* Cambia el color del texto al hacer hover */
         background-color: #fc624d; /* Cambia el color de fondo al hacer hover */
         border-color: #fc624d;  /* Cambia el color del borde al hacer hover (solo para el botón de tipo 'outline') */
+        transform: scale(1.05);
     }
 
 
