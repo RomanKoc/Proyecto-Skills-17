@@ -86,7 +86,9 @@ export class ExperienciaIndividualComponent {
     this.comentariosService.borrar(comentario)
       .subscribe((result) => {
         console.log('result -> ', result);
-        this.router.navigate(['/experiencias']);
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       });
   }
 
@@ -105,6 +107,9 @@ export class ExperienciaIndividualComponent {
       .subscribe({
         next: (response) => {
           console.log('Comentario insertado correctamente:', response);
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
         },
         error: (error) => {
           console.error('Error al insertar comentario:', error);
