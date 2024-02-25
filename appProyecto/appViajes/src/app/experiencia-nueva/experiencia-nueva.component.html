@@ -30,20 +30,27 @@
         <div class="row">
             <div class="col-md-6 mt-3">
                 @if(this.formularioExperiencia.get('subcategoria')?.errors?.['required']){}
-                <input list="subcategoria" name="subcategoria" formControlName="subcategoria" placeholder="Tipo de experiencia.."
-                    style="width: 100%; height: 42px;">
-                <datalist id="subcategoria">
+                <!-- <input list="subcategoria" name="subcategoria" formControlName="subcategoria"
+                    placeholder="Tipo de experiencia.." style="width: 100%; height: 42px;"> -->
+                <!-- <datalist id="subcategoria">
                     @for (categoria of subcategorias; track $index) {
                     @for (subcategoria of categoria.subcategorias; track $index) {
                     <option value="{{subcategoria.nombre}}">({{categoria.nombre}})</option>
                     }
                     }
-                </datalist>
+                </datalist> -->
+                <select formControlName="subcategoria" class="form-select">
+                    @for (categoria of subcategorias; track $index) {
+                        @for (subcategoria of categoria.subcategorias; track $index) {
+                        <option value="{{subcategoria.id}}">{{subcategoria.nombre}}</option>
+                        }
+                        }
+                </select>
 
             </div>
             <div class="col-md-6 mt-3">
                 <input type="file" class="form-control" disabled multiple accept="image/png, image/jpeg, image/jpg"
-                placeholder="">
+                    placeholder="">
             </div>
         </div>
 
@@ -80,8 +87,8 @@
         <!-- Sexta fila -->
         <div class="row mt-3">
             <div class="col-md-12 d-flex justify-content-center mb-3">
-                <button class="btn btn-primary" type="submit"
-                    [disabled]="formularioExperiencia.invalid">Crear experiencia</button>
+                <button class="btn btn-primary" type="submit" [disabled]="formularioExperiencia.invalid">Crear
+                    experiencia</button>
             </div>
         </div>
     </form>

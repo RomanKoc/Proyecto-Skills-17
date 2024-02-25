@@ -52,18 +52,18 @@ export class ExperienciaNuevaComponent {
   }
 
   sacarIdLocalizacion(localizacionFORM: any) {
+    console.log('localizacionFORM -> ', localizacionFORM);
     const localizacionEncontrada = this.localizaciones.find((local: any) => localizacionFORM == local.nombre);
     if (localizacionEncontrada) {
-      return localizacionEncontrada.codigo;
+      return localizacionEncontrada.id;
     }
     return 1;
-
   }
 
   registrarExperiencia() {
     console.log(this.formularioExperiencia.value.localizacion);
     const idloc = this.sacarIdLocalizacion(this.formularioExperiencia.value.localizacion);
-    console.log('idlocccccc -> ', idloc);
+    console.log(this.formularioExperiencia.value.subcategoria)
     const experiencia = {
       titulo: this.formularioExperiencia.value.titulo,
       texto: this.formularioExperiencia.value.texto,
@@ -71,13 +71,12 @@ export class ExperienciaNuevaComponent {
       fecha: this.formularioExperiencia.value.fecha,
       usuarioId: this.userId,
       localizacionId: idloc,
-      subcategoriaId: 1,
+      subcategoriaId: this.formularioExperiencia.value.subcategoria,
     };
 
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
-          /* console.log('Experiencia insertada correctamente:', response); */
           this.router.navigate(['/experiencias']).then(() => {
             setTimeout(() => {
               window.location.reload();
@@ -86,7 +85,7 @@ export class ExperienciaNuevaComponent {
         },
         error: (error) => {
           console.error('Error al insertar experiencia:', error);
-          /* alert('Error al insertar experiencia'); */
+  
         }
       });
 
