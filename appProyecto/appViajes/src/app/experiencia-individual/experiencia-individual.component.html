@@ -48,10 +48,10 @@
         <div class="col mx-2 d-flex justify-content-between">
             <p class="texto-grande"><i class="bi bi-suit-heart-fill" style="color: #18587a;"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
             @if (exp.usuario.id == userId) {
-            <button type="button" class="btn btn-primary" (click)="borrarExperiencia(exp.id)">Borrar
-                experiencia</button>
+            <button type="button" class="btn btn-primary btn-md" (click)="borrarExperiencia(exp.id)">Borrar
+                experiencia <i class="bi bi-trash"></i></button>
             }@else {
-            <button disabled type="button" class="btn btn-primary">Borrar experiencia</button>
+            <button disabled type="button" class="btn btn-primary btn-md">Borrar experiencia <i class="bi bi-trash"></i></button>
             }
         </div>
     </div>
@@ -95,7 +95,7 @@
 
 <div class="container mt-4 mb-5">
     <div class="row">
-        <h2 class="p-3 texto-con-sombra-n">Comentarios de usuarios</h2>
+        <h2 class="p-3 texto-con-sombra-n">Comentarios de usuarios <i class="bi bi-chat-left"></i></h2>
         <div class="col-12">
             <div class="container contact-form p-3">
                 <form method="post" [formGroup]="formComent" (ngSubmit)="registrarComentario()">
@@ -104,12 +104,12 @@
                         <label for="floatingTexto">Añadir un comentario</label>
                         <div class="d-flex justify-content-end">
                             @if (desactivarPorID()) {
-                            <button class="btn mt-2 mb-3 " type="submit">Enviar
-                                comentario</button>
+                            <button class="btn btn-md mt-2 mb-3 " type="submit">Enviar
+                                comentario <i class="bi bi-envelope-arrow-up"></i></button>
                             } @else {
-                            <button class="btn mt-2 mb-3" type="submit"
+                            <button class="btn btn-md mt-2 mb-3" type="submit"
                                 disabled>Enviar
-                                comentario</button>
+                                comentario <i class="bi bi-envelope-arrow-up"></i></button>
                             }
                         </div>
                     </div>
@@ -126,9 +126,9 @@
                 <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
                 <div class="d-flex justify-content-end">
                     @if (coment.usuario.id == userId) {
-                    <button type="button" class="btn" (click)="borrarComentario(coment.id)">Borrar comentario</button>
+                    <button type="button" class="btn btn-md" (click)="borrarComentario(coment.id)">Borrar comentario <i class="bi bi-envelope-x"></i></button>
                     }@else {
-                    <button class="btn" disabled>Borrar comentario</button>
+                    <button class="btn btn-md" disabled>Borrar comentario <i class="bi bi-envelope-x"></i></button>
                     }
                 </div>
             </div>

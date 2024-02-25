@@ -13,16 +13,16 @@
       @if (userId == 'not') {
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
         <a class="nav-link " aria-current="page" href="login">
-          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Mi cuenta</button></a>
+          <button type="button" class="btn btn-outline-primary btn-md me-2 p-1 mt-1">Mi cuenta</button></a>
         <a class="nav-link " aria-current="page" href="registro">
-          <button type="button" class="btn btn-primary  me-1 p-1 mt-1">Crear Cuenta</button></a>
+          <button type="button" class="btn btn-primary btn-md me-1 p-1 mt-1">Crear Cuenta</button></a>
       </div>
       } @else {
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
         <a class="nav-link " aria-current="page" href="info-usuario">
-          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1">Usuario</button></a>
+          <button type="button" class="btn btn-outline-primary me-2 p-1 mt-1 btn-md">Usuario</button></a>
         <a class="nav-link " aria-current="page" href="salir?¿?">
-          <button type="button" class="btn btn-primary  me-1 p-1 mt-1" (click)="cerrarSesion()">Cerrar
+          <button type="button" class="btn btn-primary btn-md me-1 p-1 mt-1" (click)="cerrarSesion()">Cerrar
             Sesion</button></a>
       </div>
       }
@@ -56,11 +56,11 @@
           </li>
 
         </ul>
-        <div class="d-flex">
+        <div class="d-flex align-items-center mt-2">
           @if (userId != 'not') {
-          <p class="text-white" *ngIf="usuario">{{usuario.nombre}} {{usuario.apellidos}}</p>
+          <p class="text-white" *ngIf="usuario">{{usuario.nombre}} {{usuario.apellidos}} <i class="bi bi-person-fill-check h4" style="color: #fc624d;"></i></p>
           }@else {
-          <p class="text-white">No se ha iniciado sesion</p>
+          <p class="text-white">No se ha iniciado sesion <i class="bi bi-person-fill-x h4" style="color: #fc624d;"></i></p>
           }
         </div>
       </div>
