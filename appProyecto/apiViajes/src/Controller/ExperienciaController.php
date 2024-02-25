@@ -98,11 +98,17 @@ class ExperienciaController extends AbstractController
         if (!$localizacion) {
             return new JsonResponse(['error' => 'Localización no encontrada'], Response::HTTP_NOT_FOUND);
         }
+        if (empty($localizacion)) {
+            $localizacion = 1;
+        }
 
         // Buscar la subcategoría por ID
         $subcategoriaRepository = $entityManager->getRepository(Subcategoria::class);
         $subcategoria = $subcategoriaRepository->find($data['subcategoriaId']);
 
+        if (empty($subcategoria)) {
+            $subcategoria = 1;
+        }
         // Verificar si se encontró la subcategoría
         if (!$subcategoria) {
             return new JsonResponse(['error' => 'Subcategoría no encontrada'], Response::HTTP_NOT_FOUND);
@@ -199,7 +205,7 @@ class ExperienciaController extends AbstractController
     public function delete(Request $request, EntityManagerInterface $entityManager): Response
     {
         $data = json_decode($request->getContent(), true);
-        $experienciaId = $data['id']; 
+        $experienciaId = $data['id'];
 
         // Buscar la experiencia por su ID
         $experienciaRepository = $entityManager->getRepository(Experiencia::class);

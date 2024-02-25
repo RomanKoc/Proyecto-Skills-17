@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExperienciasService } from '../experiencias.service';
 import { ApiImagenService } from '../api-imagen.service';

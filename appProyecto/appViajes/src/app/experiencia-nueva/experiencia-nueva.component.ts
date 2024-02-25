@@ -6,6 +6,7 @@ import { ImagenesService } from '../imagenes.service';
 import { SubcategoriasService } from '../subcategorias.service';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-experiencia-nueva',
@@ -15,6 +16,14 @@ import { Router } from '@angular/router';
   styleUrl: './experiencia-nueva.component.css'
 })
 export class ExperienciaNuevaComponent {
+
+  alertaSimple() {
+    Swal.fire('Experiencia registrada', 'La experiencia ha sido registrada con éxito', 'success');
+  }
+  alertaError() {
+    Swal.fire('Experiencia registrada', 'La experiencia ha sido registrada con éxito', 'success');
+  }
+
   userId: any;
   localizaciones: any;
   categorias: any;
@@ -61,9 +70,16 @@ export class ExperienciaNuevaComponent {
   }
 
   registrarExperiencia() {
-    console.log(this.formularioExperiencia.value.localizacion);
-    const idloc = this.sacarIdLocalizacion(this.formularioExperiencia.value.localizacion);
-    console.log(this.formularioExperiencia.value.subcategoria)
+    let idloc = 1;
+    let subcategoriaId: any = 1;
+
+    if (this.formularioExperiencia.value.localizacion) {
+      idloc = this.sacarIdLocalizacion('loca' + this.formularioExperiencia.value.localizacion);
+    }
+    if (this.formularioExperiencia.value.subcategoria) {
+      subcategoriaId = this.formularioExperiencia.value.subcategoria;
+    }
+
     const experiencia = {
       titulo: this.formularioExperiencia.value.titulo,
       texto: this.formularioExperiencia.value.texto,
@@ -71,21 +87,19 @@ export class ExperienciaNuevaComponent {
       fecha: this.formularioExperiencia.value.fecha,
       usuarioId: this.userId,
       localizacionId: idloc,
-      subcategoriaId: this.formularioExperiencia.value.subcategoria,
+      subcategoriaId: subcategoriaId,
     };
 
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
+          this.alertaSimple();
           this.router.navigate(['/experiencias']).then(() => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 100);
           });
+          this.alertaSimple();
         },
         error: (error) => {
           console.error('Error al insertar experiencia:', error);
-  
         }
       });
 

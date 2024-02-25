@@ -39,8 +39,7 @@
                     }
                     }
                 </datalist> -->
-                <select formControlName="subcategoria" class="form-select">
-                    <option value="1" selected>Selecciona actividad</option>
+                <select formControlName="subcategoria" name="subcategoria" class="form-select">
                     @for (categoria of subcategorias; track $index) {
                         @for (subcategoria of categoria.subcategorias; track $index) {
                         <option value="{{subcategoria.id}}">{{subcategoria.nombre}}</option>
