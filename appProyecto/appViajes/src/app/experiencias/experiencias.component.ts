@@ -43,7 +43,7 @@ export class ExperienciasComponent {
       });
 
     this.apiImagen.retornar()
-      .subscribe((resultado: any) => { // Explicitly specify the type of 'resultado' parameter as 'any'
+      .subscribe((resultado: any) => { 
         /* console.log('result -> ', resultado); */
         this.imagenes = resultado
       });

@@ -98,14 +98,10 @@ export class InfoUsuarioComponent {
           this.alertaSimple();
           setTimeout(() => {
             this.router.navigate(['/info-usuario']).then(() => {
-              // Recargar la página
               window.location.reload();
               return;
             });
           }, 1200);
-          /*           this.router.navigate(['/info-usuario']).then(() => {
-                      window.location.reload();
-                    }); */
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);

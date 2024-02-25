@@ -29,17 +29,12 @@ export class BienvenidaComponent {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        /* console.log('result -> ', result); */
         this.experiencias = result;
         this.obtenerExperiencias(this.experiencias);
-        /*         console.log(this.expMejor);
-                console.log(this.expUltima); */
-        /* console.log(this.experienciasImprir); */
       });
 
     this.apiImagen.retornar()
-      .subscribe((resultado: any) => { // Explicitly specify the type of 'resultado' parameter as 'any'
-        /* console.log('result -> ', resultado); */
+      .subscribe((resultado: any) => { 
         this.imagenes = resultado
       });
 
@@ -61,17 +56,15 @@ export class BienvenidaComponent {
   }
 
   obtenerExperiencias(experiencias: any) {
-    // Inicializamos las variables para almacenar la mejor valorada y la última ingresada
     var mejorValorada = experiencias[0];
     var ultimaIngresada = experiencias[0];
 
-    // Recorremos el arreglo de experiencias
     experiencias.forEach((experiencia: any) => {
-      // Comprobamos si la experiencia actual tiene una puntuación mayor que la mejor valorada
+      
       if (experiencia.puntuacion > mejorValorada.puntuacion) {
         mejorValorada = experiencia;
       }
-      // Comprobamos si la experiencia actual tiene una fecha más reciente que la última ingresada
+      
       if (experiencia.fecha > ultimaIngresada.fecha) {
         ultimaIngresada = experiencia;
       }
