@@ -132,5 +132,11 @@ export class ExperienciaIndividualComponent {
         }
       });
   }
+  desactivarPorID() {
+    if (this.userId != 'not') {
+      return true;
+    }
+    return false;
+  }
 }
 

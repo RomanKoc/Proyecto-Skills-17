@@ -34,7 +34,7 @@ export class BienvenidaComponent {
         this.obtenerExperiencias(this.experiencias);
         /*         console.log(this.expMejor);
                 console.log(this.expUltima); */
-        console.log(this.experienciasImprir);
+        /* console.log(this.experienciasImprir); */
       });
 
     this.apiImagen.retornar()
@@ -51,7 +51,7 @@ export class BienvenidaComponent {
     if (imagen && imagen.nombre) {
       return imagen.nombre;
     }
-    return '';
+    return 'false';
   }
   prueba() {
     const id = 1;

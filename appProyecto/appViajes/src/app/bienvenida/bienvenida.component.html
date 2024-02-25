@@ -19,12 +19,15 @@
         @for (exp of experienciasImprir; track $index) {
         <div class="card d-flex" style="width: 25rem;margin:1rem">
             <h3 class="text-center">{{experienciasP[$index]}}</h3>
-            <img src="data:image;base64,{{ obtenerNombreImagenPorExperiencia(exp) }}" class="img-fluid" alt="..."
+            @if (obtenerNombreImagenPorExperiencia(exp) != 'false' ) {
+            <img src="data:image;base64,{{ obtenerNombreImagenPorExperiencia(exp) }}" class="card-img-top" alt="imagen tarjeta"
                 style="max-width: 400px;max-height: 500px;">
-                <!-- class="card-img-top" -->
+            } @else {
+            <img src="../../assets/img/default.jpeg" class="card-img-top" alt="img por defecto"
+                style="max-width: 400px;max-height: 500px;">
+            }
             <div class="card-body">
                 <h5 class="card-title">{{exp.titulo}}</h5>
-                <!-- <p class="card-text">{{exp.texto}}</p> -->
                 <p class="card-text">{{exp.usuario.nombre}}<br><small class="text-muted">{{exp.fecha}}</small></p>
                 <div class="d-flex justify-content-between">
                     <p class="card-text">{{exp.localizacion.nombre}}<small class="text-muted"></small></p>

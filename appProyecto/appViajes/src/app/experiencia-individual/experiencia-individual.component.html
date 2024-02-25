@@ -100,15 +100,23 @@
                                 <label for="floatingTexto">Texto</label>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex justify-content-center mt-4 mb-4">
+
+                        <div class="col-md-6 d-flex justify-content-start mt-4 mb-4">
+                            @if (desactivarPorID()) {
                             <button class="btn btn-lg" type="submit" style="background-color: #f78536;">Enviar
                                 comentario</button>
+                            } @else {
+                            <button class="btn btn-lg" type="submit" style="background-color: #f78536;" disabled>Enviar
+                                comentario</button>
+                            }
                         </div>
                     </div>
 
                 </form>
             </div>
+
         </div>
+        <hr>
         @for (coment of comentarios; track $index) {
         @if(coment.experiencia.id == exp.id){
         <div class="col-sm-11 col-10 card mx-5">

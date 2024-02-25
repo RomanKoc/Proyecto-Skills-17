@@ -9,7 +9,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-experiencia-nueva',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule,NgClass],
+  imports: [ReactiveFormsModule, FormsModule, NgClass],
   templateUrl: './experiencia-nueva.component.html',
   styleUrl: './experiencia-nueva.component.css'
 })
@@ -18,6 +18,7 @@ export class ExperienciaNuevaComponent {
   localizaciones: any;
   categorias: any;
   subcategorias: any;
+  categoriaSeleccionada: any;
 
   formularioExperiencia = new FormGroup({
     titulo: new FormControl('', [Validators.required]),
@@ -73,7 +74,7 @@ export class ExperienciaNuevaComponent {
       fecha: this.formularioExperiencia.value.fecha,
       usuarioId: this.userId,
       localizacionId: idloc,
-      subcategoriaId: 1, // Aquí debes asignar el ID de la subcategoría seleccionada
+      subcategoriaId: 1,
     };
 
     this.experienciaService.insertarExperiencia(experiencia)
