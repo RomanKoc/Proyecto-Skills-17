@@ -49,7 +49,7 @@ export class ExperienciaIndividualComponent {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        /* console.log('result -> ', result); */
+        console.log('resultExpr -> ', result);
         this.experiencias = result;
       });
 
@@ -63,12 +63,12 @@ export class ExperienciaIndividualComponent {
       this.id = params.get('id')!
     });
     this.obtenerExperiencia(this.id);
+    console.log('experienciaUsuario -> ', this.experienciaUsuario);
   }
 
   /* ME QUEDA LA EXPERIENCIA */
   obtenerExperiencia(id: any) {
     const experieciaIndividual = this.experiencias.find((exp: any) => exp.usuario.id == id);
-
     console.log('experieciaIndividual -> ', experieciaIndividual);
     if (experieciaIndividual) {
       this.experienciaUsuario = experieciaIndividual;
@@ -108,6 +108,22 @@ export class ExperienciaIndividualComponent {
         },
         error: (error) => {
           console.error('Error al insertar comentario:', error);
+        }
+      });
+  }
+
+  borrarExperiencia(id: any) {
+    const experiencia = {
+      id: id
+    }
+    this.experienciaServ.borrarExperiencia(experiencia)
+      .subscribe({
+        next: (response) => {
+          console.log('Experiencia borrada correctamente:', response);
+          this.router.navigate(['/experiencias']);
+        },
+        error: (error) => {
+          console.error('Error al borrar experiencia:', error);
         }
       });
   }

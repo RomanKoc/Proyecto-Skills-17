@@ -38,7 +38,13 @@
     <div class="row slider mx-0  mx-sm-5">
         <div class="col mx-3 d-flex justify-content-between">
             <p><i class="bi bi-suit-heart-fill"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
-            <a href="COMENTARIOS" class="btn btn-primary">Realizar comentario</a>
+            @if (exp.usuario.id == userId) {
+            <button type="button" class="btn btn-primary" (click)="borrarExperiencia(exp.id)">Realizar
+                comentario</button>
+            }@else {
+            <button disabled type="button" class="btn btn-primary">Realizar
+                comentario</button>
+            }
         </div>
     </div>
 </div>

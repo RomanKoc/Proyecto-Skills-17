@@ -191,7 +191,7 @@ class ExperienciaController extends AbstractController
         $entityManager->persist($experiencia);
         $entityManager->flush();
 
-        
+
         // Crear y asociar la imagen a la experiencia
         //$imagen = new Imagen();
         //$imagenBlob = file_get_contents('../public/img/default.jpg');
@@ -239,14 +239,25 @@ class ExperienciaController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_experiencia_delete', methods: ['POST'])]
-    public function delete(Request $request, Experiencia $experiencium, EntityManagerInterface $entityManager): Response
+    #[Route('/borrar', name: 'app_experiencia_delete', methods: ['POST'])]
+    public function delete(Request $request, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $experiencium->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($experiencium);
-            $entityManager->flush();
+        $data = json_decode($request->getContent(), true);
+        $experienciaId = $data['id']; 
+
+        // Buscar la experiencia por su ID
+        $experienciaRepository = $entityManager->getRepository(Experiencia::class);
+        $experiencia = $experienciaRepository->find($experienciaId);
+
+        // Verificar si se encontró la experiencia
+        if (!$experiencia) {
+            return new JsonResponse(['error' => 'Experiencia no encontrada'], Response::HTTP_NOT_FOUND);
         }
 
-        return $this->redirectToRoute('app_experiencia_index', [], Response::HTTP_SEE_OTHER);
+        // Eliminar la experiencia
+        $entityManager->remove($experiencia);
+        $entityManager->flush();
+
+        return new JsonResponse(['message' => 'Experiencia eliminada correctamente'], Response::HTTP_OK);
     }
 }
