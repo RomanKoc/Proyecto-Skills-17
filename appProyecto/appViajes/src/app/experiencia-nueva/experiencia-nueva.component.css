@@ -1,5 +1,6 @@
-.container.contact-form {
+#cont {
     background-color: #ffd6d6;
+    border-radius: 10px;
 }
 
 .contact-image {
