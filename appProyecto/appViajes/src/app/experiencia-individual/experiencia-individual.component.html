@@ -48,17 +48,28 @@
         </div>
     </div>
 </div>
-
 <div class="container mt-3 mb-3" id="carrusel">
     <div class="row slider">
+        @for (img of imagenes; track $index) {
+        @if (img.experiencia_id == exp.id) {
+        <div class="col-12 col-md-6 d-flex justify-content-center">
+            <img src="data:image;base64,{{img.nombre}}" class="img-thumbnail mx-4 mt-3"
+                style="max-width: 600px; width: 100%;" alt="imagen_{{img.id}}">
+
+        </div>
+        }
+        }
+    </div>
+</div>
+<!-- <div class="container mt-3 mb-3" id="carrusel">
+    <div class="row slider">
         <div class="col">
-            <div id="carousel" class="carousel" data-bs-ride="carousel">
+            <div id="carousel" class="carousel slide" data-bs-interval="10000">
                 <div class="carousel-inner">
                     @for (img of imagenes; track $index) {
                     @if (img.experiencia_id == exp.id) {
                     <div class="carousel-item active">
-                        <img src="data:image;base64,{{img.nombre}}" class="d-block col-12 d-inline-block"
-                            alt="imagen_{{img.id}}">
+                        <img src="data:image;base64,{{img.nombre}}" class="d-block" alt="imagen_{{img.id}}">
                     </div>
                     }
                     }
@@ -70,22 +81,10 @@
                 <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 </button>
-
-                <!-- <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1">
-                    </button>
-
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2">
-                    </button>
-
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3">
-                    </button>
-                </div> -->
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="container mt-4 mb-5 d-flex">
     <div class="row">
