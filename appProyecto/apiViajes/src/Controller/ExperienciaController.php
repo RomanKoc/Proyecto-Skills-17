@@ -52,6 +52,14 @@ class ExperienciaController extends AbstractController
                         ],
                     ],
                 ],
+                'categoria' => [
+                    'id' => $experiencia->getSubcategoria() ? $experiencia->getSubcategoria()->getCategoria()->getId() : null,
+                    'nombre' => $experiencia->getSubcategoria() ? $experiencia->getSubcategoria()->getCategoria()->getNombre() : null,
+                    'subcategoria' => [
+                        'id' => $experiencia->getSubcategoria() ? $experiencia->getSubcategoria()->getId() : null,
+                        'nombre' => $experiencia->getSubcategoria() ? $experiencia->getSubcategoria()->getNombre() : null,
+                    ],
+                ],
                 'comentarios' => [],
             ];
 
