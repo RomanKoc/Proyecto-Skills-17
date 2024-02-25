@@ -3,12 +3,13 @@ import { ApiPruebaService } from '../api-prueba.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import * as CryptoJS from 'crypto-js'; // Importar crypto-js
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
@@ -18,11 +19,11 @@ export class RegistroComponent {
   constructor(private usuarioService: ApiPruebaService, private router: Router) { }
 
   formularioRegistro = new FormGroup({
-    nombre: new FormControl(''),
-    apellidos: new FormControl(''),
-    mail: new FormControl(''),
-    ciudad: new FormControl(''),
-    password: new FormControl(''),
+    nombre: new FormControl('',[Validators.required]),
+    apellidos: new FormControl('',[Validators.required]),
+    mail: new FormControl('',[Validators.required]),
+    ciudad: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required]),
   });
 
   encriptarPasswd() {
@@ -60,5 +61,8 @@ export class RegistroComponent {
   }
   mostrarPassw() {
     this.tipoPasswd = (this.tipoPasswd === 'password') ? 'text' : 'password';
+  }
+  determinarInputs(inputControl: any) {
+    return inputControl.errors?.["required"] ? 'is-invalid' : 'is-valid';
   }
 }

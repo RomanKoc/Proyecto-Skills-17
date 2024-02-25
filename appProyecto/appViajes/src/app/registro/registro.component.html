@@ -8,34 +8,44 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center ">
                 <div class="form-floating col-9 col-md-7">
-                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre"
+                    [ngClass]="determinarInputs(formularioRegistro.get('nombre'))">
+                    @if(this.formularioRegistro.get('nombre')?.errors?.['required']){}
                     <label>Nombre</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" placeholder="Apellido" formControlName="apellidos">
+                    <input type="email" class="form-control" placeholder="Apellido" formControlName="apellidos"
+                    [ngClass]="determinarInputs(formularioRegistro.get('apellidos'))">
+                    @if(this.formularioRegistro.get('apellidos')?.errors?.['required']){}
                     <label>Apellidos</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="email" class="form-control" placeholder="name@example.com" formControlName="mail">
+                    <input type="email" class="form-control" placeholder="name@example.com" formControlName="mail"
+                    [ngClass]="determinarInputs(formularioRegistro.get('mail'))">
+                    @if(this.formularioRegistro.get('mail')?.errors?.['required']){}
                     <label>Correo</label>
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="text" class="form-control" placeholder="ciudad" formControlName="ciudad">
+                    <input type="text" class="form-control" placeholder="ciudad" formControlName="ciudad"
+                    [ngClass]="determinarInputs(formularioRegistro.get('ciudad'))">
+                    @if(this.formularioRegistro.get('ciudad')?.errors?.['required']){}
                     <label>Ciudad</label>
                 </div>
             </div>
 
             <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-floating mt-2 col-9 col-md-7">
-                    <input type="{{tipoPasswd}}" class="form-control" placeholder="Password" formControlName="password">
+                    <input type="{{tipoPasswd}}" class="form-control" placeholder="Password" formControlName="password"
+                    [ngClass]="determinarInputs(formularioRegistro.get('password'))">
+                    @if(this.formularioRegistro.get('password')?.errors?.['required']){}
                     <label>Contraseña</label>
                 </div>
             </div>
