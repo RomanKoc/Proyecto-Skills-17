@@ -3,6 +3,7 @@ import { ApiPruebaService } from '../api-prueba.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as CryptoJS from 'crypto-js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-info-usuario',
@@ -51,11 +52,18 @@ export class InfoUsuarioComponent {
     this.usuariosService.borrar(usuario)
       .subscribe({
         next: (response) => {
-          /* console.log('Usuario BORRADO correctamente:', response); */
           this.cerrarSesion();
-          this.router.navigate(['/']).then(() => {
+          this.alertaBorrar();
+          setTimeout(() => {
+            this.router.navigate(['/']).then(() => {
+              // Recargar la página
+                window.location.reload();
+              return;
+            });
+          }, 2000);
+/*           this.router.navigate(['/']).then(() => {
             window.location.reload();
-          });
+          }); */
         },
         error: (error) => {
           console.log('Error al BORRAR usuario:', error);
@@ -92,10 +100,17 @@ export class InfoUsuarioComponent {
     this.usuariosService.modificarUsuario(usuario)
       .subscribe({
         next: (response) => {
-         /*  console.log('Usuario ACTUALIZADO correctamente:', response); */
-          this.router.navigate(['/info-usuario']).then(() => {
+          this.alertaSimple();
+          setTimeout(() => {
+            this.router.navigate(['/info-usuario']).then(() => {
+              // Recargar la página
+                window.location.reload();
+              return;
+            });
+          }, 2000);
+/*           this.router.navigate(['/info-usuario']).then(() => {
             window.location.reload();
-          });
+          }); */
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);
@@ -104,5 +119,11 @@ export class InfoUsuarioComponent {
       });
 
     this.formularioRegistro.reset();
+  }
+  alertaSimple() {
+    Swal.fire('Informacion actualizada correctamente', 'Puede continuar', 'success');
+  }
+  alertaBorrar() {
+    Swal.fire('Se ha borrado el usuario', 'Hasta la próxima', 'success');
   }
 }

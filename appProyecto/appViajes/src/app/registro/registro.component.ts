@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import * as CryptoJS from 'crypto-js'; // Importar crypto-js
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -46,10 +47,14 @@ export class RegistroComponent {
     this.usuarioService.insertarUsuario(usuario)
       .subscribe({
         next: (response) => {
-          /* console.log('Usuario insertado correctamente:', response); */
-          this.router.navigate(['/login']).then(() => {
-            window.location.reload();
-          });
+          this.alertaSimple();
+          setTimeout(() => {
+            this.router.navigate(['/login']).then(() => {
+              // Recargar la página
+                window.location.reload();
+              return;
+            });
+          }, 2000);
         },
         error: (error) => {
           console.error('Error al insertar usuario:', error);
@@ -64,5 +69,8 @@ export class RegistroComponent {
   }
   determinarInputs(inputControl: any) {
     return inputControl.errors?.["required"] ? 'is-invalid' : 'is-valid';
+  }
+  alertaSimple() {
+    Swal.fire('Usuario registrado correctamente', 'Puede iniciar sesión', 'success');
   }
 }

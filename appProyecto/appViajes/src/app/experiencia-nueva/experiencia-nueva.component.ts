@@ -17,13 +17,6 @@ import Swal from 'sweetalert2';
 })
 export class ExperienciaNuevaComponent {
 
-  alertaSimple() {
-    Swal.fire('Experiencia registrada', 'La experiencia ha sido registrada con éxito', 'success');
-  }
-  alertaError() {
-    Swal.fire('Experiencia registrada', 'La experiencia ha sido registrada con éxito', 'success');
-  }
-
   userId: any;
   localizaciones: any;
   categorias: any;
@@ -109,5 +102,8 @@ export class ExperienciaNuevaComponent {
   onSelectCategoria(categoriaId: number) {
     const categoria = this.categorias.find((c: any) => c.id === categoriaId);
     this.subcategorias = categoria ? categoria.subcategorias : [];
+  }
+  alertaSimple() {
+    Swal.fire('Experiencia registrada', 'La experiencia ha sido registrada con éxito', 'success');
   }
 }

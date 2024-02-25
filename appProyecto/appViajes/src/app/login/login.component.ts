@@ -4,11 +4,12 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import * as CryptoJS from 'crypto-js'; // Importar crypto-js
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,NgClass],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -60,16 +61,18 @@ export class LoginComponent {
         const passwordDesencriptada = this.desencriptarPasswd(usuario.password);
 
         if (this.formularioRegistro.value.password == passwordDesencriptada) {
-          /* console.log('Usuario logeado correctamente'); */
-          /* alert('Usuario logeado correctamente'); */
           this.id = usuario.id;
           localStorage.setItem('userId', this.id.toString());
-          this.router.navigate(['/']).then(() => {
-            // Recargar la página
-            window.location.reload();
-            return;
-          });
+          this.alertaSimple();
+          setTimeout(() => {
+            this.router.navigate(['/']).then(() => {
+              // Recargar la página
+                window.location.reload();
+              return;
+            });
+          }, 2000);
         }
+
       }
     });
   }
@@ -85,5 +88,8 @@ export class LoginComponent {
   }
   determinarInputs(inputControl: any) {
     return inputControl.errors?.["required"] ? 'is-invalid' : 'is-valid';
+  }
+  alertaSimple() {
+    Swal.fire('Sesion iniciada correctamente', 'Bienvenido', 'success');
   }
 }
