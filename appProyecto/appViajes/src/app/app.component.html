@@ -10,7 +10,6 @@
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
         <h1 class="text-center">Travel 360</h1>
       </div>
-      <!-- IF PARA SI HA INICIADO SESION: -->
       @if (userId == 'not') {
       <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-end">
         <a class="nav-link " aria-current="page" href="login">
@@ -59,8 +58,7 @@
         </ul>
         <div class="d-flex">
           @if (userId != 'not') {
-            <!-- esto da error hay que mirar a ver que pasa! -->
-          <!-- <p class="text-white">{{usuario.nombre}} {{usuario.apellidos}}</p> -->
+          <p class="text-white" *ngIf="usuario">{{usuario.nombre}} {{usuario.apellidos}}</p>
           }@else {
           <p class="text-white">No se ha iniciado sesion</p>
           }
@@ -71,20 +69,8 @@
 </header>
 <main>
   <router-outlet></router-outlet>
-  <!-- APARECE UNO DE LOS 3 <router-outlet></router-outlet> -->
-  <!-- COMPONENTE INFO / LOGIN / REGISTRO -->
-  <!-- ------------------ -->
-  <!-- COMPONENTE EXPERIENCIAS -->
-  <!-- ------------------ -->
-  <!-- COMPONENTE BIENVENIDA tiene esto: -->
-  <!-- -LINK MOSTRANDO ULTIMAS EXPERIENCIAS 2/3 -->
-  <!-- -LINK MOSTRANDO MEJOR EXPERIENCIA 1/3 -->
-  <!-- link lleva a componente experiencias -->
-  <!-- ------------------ -->
-  <!-- COMPONENTE EXPERIENCIAS -> SUBCOMPONENTE  -->
 </main>
 <footer>
-  <!-- COMPONENTE FOOTER FIJO -->
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
