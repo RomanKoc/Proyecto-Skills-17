@@ -84,10 +84,11 @@
     </div>
 </div> -->
 
-<div class="container mt-4 d-flex">
+<div class="container mt-4 mb-5">
     <div class="row">
+        <h2 class="p-3">Comentarios de usuarios</h2>
         <div class="col-12">
-            <div class="container contact-form mt-3 col-12 p-3">
+            <div class="container contact-form p-3">
                 <form method="post" [formGroup]="formComent" (ngSubmit)="registrarComentario()">
                     <div class="form-floating mt-4">
                         <textarea class="form-control" placeholder="Texto" formControlName="texto"></textarea>
@@ -105,13 +106,12 @@
                     </div>
                 </form>
             </div>
-
         </div>
-        <h2 class="p-3">Comentarios de usuarios</h2>
+        <hr>
         @for (coment of comentarios; track $index) {
         @if(coment.experiencia.id == exp.id){
 
-        <div class="col-10 col-sm-10 col-md-11 card mx-5 mt-2 mb-2">
+        <div class="col-10 col-sm-10 col-md-11 card mx-5">
             <div class="card-body">
                 <h5 class="card-title">{{coment.usuario.nombre}}</h5>
                 <p class="card-text">{{coment.texto}}</p>

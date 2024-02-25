@@ -20,26 +20,15 @@
     text-align: center;
     color: #fc624d;
 }
-/* .container.contact-form {
-    background: -webkit-linear-gradient(left, #ff895d, #ffd6d6, #ff895d); 
-    background-color: #ffd6d6;
+.btn {
+    color: #000; 
+    background-color: #ff895d;
+    border-color:#fc624d;
+}
+.btn:hover {
+    color: #fff; 
+    background-color: #fc624d;  
+    border-color: #fc624d;  
+    transform: scale(1.05);
 }
 
-.contact-image {
-    text-align: center;
-}
-
-.contact-image img {
-    border-radius: 6rem;
-    width: 12%;
-    transform: rotate(3deg);
-}
-
- .contact-form{
-    border-radius:1rem;
-}
-
-.contact-form h3{
-    text-align: center;
-    color: #fc624d; 
-} */

@@ -19,30 +19,30 @@ nav {
     color:#fc624d;
 }
 .btn-outline-success {
-    color: #fff; /* Cambia el color del texto al hacer hover */
-    border-color: #fc624d; /* Cambia el color del borde al hacer hover */
+    color: #fff; 
+    border-color: #fc624d; 
 }
 .btn-outline-success:hover {
-    color: #000; /* Cambia el color del texto al hacer hover */
-    background-color: #fc624d; /* Cambia el color de fondo al hacer hover */
-    border-color: #fc624d;  /*ambia el color del borde al hacer hover */
+    color: #000; 
+    background-color: #ff895d;
+    border-color: #fc624d;
     transform: scale(1.05);
 }
 
 .btn-outline-primary{
-    color: #000; /* Cambia el color del texto al hacer hover */
+    color: #000; 
     border-color: #fc624d;
 }
     .btn-primary {
-        color: #000; /* Cambia el color del texto al hacer hover */
-        background-color: #fc624d; /* Cambia el color de fondo al hacer hover */
+        color: #000; 
+        background-color: #ff895d;
         border-color:#fc624d;
     }
 .btn-outline-primary:hover,
     .btn-primary:hover {
-        color: #fff; /* Cambia el color del texto al hacer hover */
-        background-color: #fc624d; /* Cambia el color de fondo al hacer hover */
-        border-color: #fc624d;  /* Cambia el color del borde al hacer hover (solo para el botón de tipo 'outline') */
+        color: #fff; 
+        background-color: #fc624d;
+        border-color: #fc624d;
         transform: scale(1.05);
     }
 

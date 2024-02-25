@@ -3,3 +3,14 @@
     display: block;
     margin: 0 auto;
 }
+.btn {
+    color: #000; 
+    background-color: #ff895d;
+    border-color:#fc624d;
+}
+.btn:hover {
+    color: #fff; 
+    background-color: #fc624d;  
+    border-color: #fc624d;  
+    transform: scale(1.05);
+}
