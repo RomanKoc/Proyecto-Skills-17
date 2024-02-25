@@ -75,10 +75,8 @@ class ImagenController extends AbstractController
         }
 
         $imagen = new Imagen();
-        /* $imagenBinaria = base64_decode($data['imagen']); */
         $imagenBinaria = $data['imagen'];
 
-        // Verificar si la decodificación fue exitosa
         if ($imagenBinaria === false) {
             return new JsonResponse(['error' => 'No se pudo decodificar la imagen'], Response::HTTP_BAD_REQUEST);
         }else{
@@ -90,9 +88,6 @@ class ImagenController extends AbstractController
         } */
 
         $imagen->setNombre($imagenBinaria);
-        /* $imagen->setExperiencia($experiencia); */
-
-        // Persistir la imagen en la base de datos
         try {
             $entityManager->persist($imagen);
             $entityManager->flush();

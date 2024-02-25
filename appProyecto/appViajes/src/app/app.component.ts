@@ -31,11 +31,12 @@ export class AppComponent {
   cerrarSesion() {
     localStorage.removeItem('userId');
     this.userId = 'not';
-    this.alertaSimple();
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 1200);
+    /* this.alertaSimple(); corregir no funciona como debe */
+    this.router.navigate(['/']);
+
   }
+
+
 
   /* busco usuario en api, le comparo con id del sotrage y  */
   constructor(private usuariosService: ApiPruebaService, private router: Router) {
