@@ -28,3 +28,6 @@ asi practicamos mas cosas :) */
     border-color: #fc624d;  
     transform: scale(1.05);
 }
+.megusta:active{
+    transform: translate(0px, -2px);
+}

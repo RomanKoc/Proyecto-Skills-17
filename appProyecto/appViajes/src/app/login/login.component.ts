@@ -66,11 +66,10 @@ export class LoginComponent {
           this.alertaSimple();
           setTimeout(() => {
             this.router.navigate(['/']).then(() => {
-              // Recargar la página
                 window.location.reload();
               return;
             });
-          }, 2000);
+          }, 1200);
         }
 
       }

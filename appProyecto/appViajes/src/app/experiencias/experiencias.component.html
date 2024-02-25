@@ -35,9 +35,9 @@
             </div>
             <div class="d-flex justify-content-between">
                 @if (desactivarPorID()) {
-                <a  aria-disabled="true" class="btn btn-primary">Me gusta <i class="bi bi-balloon-heart"></i></a>
+                <button  aria-disabled="true" class="btn btn-primary megusta">Me gusta <i class="bi bi-balloon-heart"></i></button>
                 } @else {
-                <a  aria-disabled="false" class="btn btn-primary disabled">Me gusta <i class="bi bi-balloon-heart"></i></a>
+                <button  aria-disabled="false" class="btn btn-primary megusta disabled">Me gusta <i class="bi bi-balloon-heart"></i></button>
                 }
                 <a href="experiencia-individual/{{exp.id}}" class="btn btn-primary">Mas información</a>
             </div>

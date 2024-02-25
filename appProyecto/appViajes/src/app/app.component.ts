@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ApiPruebaService } from './api-prueba.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -30,7 +31,10 @@ export class AppComponent {
   cerrarSesion() {
     localStorage.removeItem('userId');
     this.userId = 'not';
-    this.router.navigate(['/']);
+    this.alertaSimple();
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 1200);
   }
 
   /* busco usuario en api, le comparo con id del sotrage y  */
@@ -54,5 +58,8 @@ export class AppComponent {
       return true;
     }
     return false;
+  }
+  alertaSimple() {
+    Swal.fire('Session cerrada', 'Hasta pronto', 'success');
   }
 }

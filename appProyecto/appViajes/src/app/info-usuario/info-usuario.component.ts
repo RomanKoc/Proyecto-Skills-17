@@ -56,18 +56,13 @@ export class InfoUsuarioComponent {
           this.alertaBorrar();
           setTimeout(() => {
             this.router.navigate(['/']).then(() => {
-              // Recargar la página
-                window.location.reload();
+              window.location.reload();
               return;
             });
-          }, 2000);
-/*           this.router.navigate(['/']).then(() => {
-            window.location.reload();
-          }); */
+          }, 1500);
         },
         error: (error) => {
           console.log('Error al BORRAR usuario:', error);
-          /* alert('Error al BORRAR usuario'); */
         }
       })
   };
@@ -104,13 +99,13 @@ export class InfoUsuarioComponent {
           setTimeout(() => {
             this.router.navigate(['/info-usuario']).then(() => {
               // Recargar la página
-                window.location.reload();
+              window.location.reload();
               return;
             });
-          }, 2000);
-/*           this.router.navigate(['/info-usuario']).then(() => {
-            window.location.reload();
-          }); */
+          }, 1200);
+          /*           this.router.navigate(['/info-usuario']).then(() => {
+                      window.location.reload();
+                    }); */
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);
@@ -126,4 +121,5 @@ export class InfoUsuarioComponent {
   alertaBorrar() {
     Swal.fire('Se ha borrado el usuario', 'Hasta la próxima', 'success');
   }
+
 }

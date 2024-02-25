@@ -54,7 +54,7 @@ export class RegistroComponent {
                 window.location.reload();
               return;
             });
-          }, 2000);
+          }, 1200);
         },
         error: (error) => {
           console.error('Error al insertar usuario:', error);
