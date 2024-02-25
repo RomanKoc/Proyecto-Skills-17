@@ -38,13 +38,13 @@ export class ExperienciasComponent {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         this.experiencias = result;
       });
 
     this.apiImagen.retornar()
       .subscribe((resultado: any) => { // Explicitly specify the type of 'resultado' parameter as 'any'
-        console.log('result -> ', resultado);
+        /* console.log('result -> ', resultado); */
         this.imagenes = resultado
       });
   }

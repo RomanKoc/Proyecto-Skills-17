@@ -34,7 +34,6 @@ export class InfoUsuarioComponent {
         this.usuarios.forEach((user: any) => {
           if (user.id == this.userId) {
             this.usuario = user;
-            console.log('usuario -> ', this.usuario);
             return;
           }
         });
@@ -52,15 +51,15 @@ export class InfoUsuarioComponent {
     this.usuariosService.borrar(usuario)
       .subscribe({
         next: (response) => {
-          console.log('Usuario BORRADO correctamente:', response);
+          /* console.log('Usuario BORRADO correctamente:', response); */
           this.cerrarSesion();
           this.router.navigate(['/']).then(() => {
             window.location.reload();
           });
         },
         error: (error) => {
-          console.error('Error al BORRAR usuario:', error);
-          alert('Error al BORRAR usuario');
+          console.log('Error al BORRAR usuario:', error);
+          /* alert('Error al BORRAR usuario'); */
         }
       })
   };
@@ -90,18 +89,17 @@ export class InfoUsuarioComponent {
       ciudad: this.formularioRegistro.get('ciudad')?.value ?? '',
       password: this.formularioRegistro.get('password')?.value ?? ''
     };
-    console.log('usuarioCLS -> ', usuario);
     this.usuariosService.modificarUsuario(usuario)
       .subscribe({
         next: (response) => {
-          console.log('Usuario ACTUALIZADO correctamente:', response);
+         /*  console.log('Usuario ACTUALIZADO correctamente:', response); */
           this.router.navigate(['/info-usuario']).then(() => {
             window.location.reload();
           });
         },
         error: (error) => {
           console.error('Error al ACTUALIZAR usuario:', error);
-          alert('Error al actualizar usuario');
+          /* alert('Error al actualizar usuario'); */
         }
       });
 

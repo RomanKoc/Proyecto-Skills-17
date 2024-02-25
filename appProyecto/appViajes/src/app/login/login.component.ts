@@ -55,16 +55,15 @@ export class LoginComponent {
   comprobarUsuario() {
     this.usuarios.forEach((usuario: any) => {
       if (usuario.mail === this.formularioRegistro.value.mail) {
-        console.log('Usuario encontrado:', usuario);
+        /* console.log('Usuario encontrado:', usuario); */
         this.encriptarPasswd();
         const passwordDesencriptada = this.desencriptarPasswd(usuario.password);
 
         if (this.formularioRegistro.value.password == passwordDesencriptada) {
-          console.log('Usuario logeado correctamente');
-          alert('Usuario logeado correctamente');
+          /* console.log('Usuario logeado correctamente'); */
+          /* alert('Usuario logeado correctamente'); */
           this.id = usuario.id;
           localStorage.setItem('userId', this.id.toString());
-
           this.router.navigate(['/']).then(() => {
             // Recargar la página
             window.location.reload();

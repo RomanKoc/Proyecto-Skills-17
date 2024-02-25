@@ -8,9 +8,6 @@ export class LocalizacionService {
 
   constructor(private http: HttpClient) { }
   retornar() {
-    return this.http.get('http://127.0.0.1:8000/localizacion/') // recupera un archivo JSON
+    return this.http.get('http://127.0.0.1:8000/localizacion/') 
   }
-  /* insertarExperiencia(experiencia: any) {
-    return this.http.post('http://127.0.0.1:8000/localizacion/new', experiencia);
-  } */
 }

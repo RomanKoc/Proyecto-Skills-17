@@ -8,6 +8,6 @@ export class ApiImagenService {
 
   constructor(private http: HttpClient) { }
   retornar() {
-    return this.http.get('http://127.0.0.1:8000/imagen/') // recupera un archivo JSON
+    return this.http.get('http://127.0.0.1:8000/imagen/') 
   }
 }

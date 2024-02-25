@@ -5,6 +5,7 @@ import { LocalizacionService } from '../localizacion.service';
 import { ImagenesService } from '../imagenes.service';
 import { SubcategoriasService } from '../subcategorias.service';
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-experiencia-nueva',
@@ -34,29 +35,25 @@ export class ExperienciaNuevaComponent {
   }
 
   constructor(private localizacionService: LocalizacionService, private experienciaService: ExperienciasService,
-    private subcategoriaService: SubcategoriasService) {
+    private subcategoriaService: SubcategoriasService, private router: Router) {
     this.localizacionService.retornar()
       .subscribe((result) => {
         this.localizaciones = result;
-        /* console.log('localizaciones -> ', this.localizaciones); */
       });
 
     this.subcategoriaService.retornar()
       .subscribe((result) => {
         this.subcategorias = result;
-        console.log('subcategorias -> ', this.subcategorias);
       });
   }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
-    console.log('userId -> ', this.userId);
   }
 
   sacarIdLocalizacion(localizacionFORM: any) {
     const localizacionEncontrada = this.localizaciones.find((local: any) => localizacionFORM == local.nombre);
     if (localizacionEncontrada) {
-      console.log('localizacionEncontrada.codigo ->', localizacionEncontrada.codigo);
       return localizacionEncontrada.codigo;
     }
     return 1;
@@ -80,11 +77,16 @@ export class ExperienciaNuevaComponent {
     this.experienciaService.insertarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
-          console.log('Experiencia insertada correctamente:', response);
+          /* console.log('Experiencia insertada correctamente:', response); */
+          this.router.navigate(['/experiencias']).then(() => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+          });
         },
         error: (error) => {
           console.error('Error al insertar experiencia:', error);
-          alert('Error al insertar experiencia');
+          /* alert('Error al insertar experiencia'); */
         }
       });
 

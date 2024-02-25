@@ -43,7 +43,6 @@ export class AppComponent {
           this.usuarios.forEach((user: any) => {
             if (user.id == this.userId) {
               this.usuario = user;
-              console.log('usuario -> ', this.usuario);
             }
           });
         }

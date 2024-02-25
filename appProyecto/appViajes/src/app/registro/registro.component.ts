@@ -46,14 +46,14 @@ export class RegistroComponent {
     this.usuarioService.insertarUsuario(usuario)
       .subscribe({
         next: (response) => {
-          console.log('Usuario insertado correctamente:', response);
+          /* console.log('Usuario insertado correctamente:', response); */
           this.router.navigate(['/login']).then(() => {
             window.location.reload();
           });
         },
         error: (error) => {
           console.error('Error al insertar usuario:', error);
-          alert('Error al insertar usuario');
+          /* alert('Error al insertar usuario'); */
         }
       });
 

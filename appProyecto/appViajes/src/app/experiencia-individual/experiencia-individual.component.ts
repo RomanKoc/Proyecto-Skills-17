@@ -49,7 +49,7 @@ export class ExperienciaIndividualComponent {
 
     this.experienciaServ.retornar()
       .subscribe((result) => {
-        console.log('resultExpr -> ', result);
+        /* console.log('resultExpr -> ', result); */
         this.experiencias = result;
       });
 
@@ -63,13 +63,11 @@ export class ExperienciaIndividualComponent {
       this.id = params.get('id')!
     });
     this.obtenerExperiencia(this.id);
-    console.log('experienciaUsuario -> ', this.experienciaUsuario);
   }
 
   /* ME QUEDA LA EXPERIENCIA */
   obtenerExperiencia(id: any) {
     const experieciaIndividual = this.experiencias.find((exp: any) => exp.usuario.id == id);
-    console.log('experieciaIndividual -> ', experieciaIndividual);
     if (experieciaIndividual) {
       this.experienciaUsuario = experieciaIndividual;
       return;
@@ -85,7 +83,7 @@ export class ExperienciaIndividualComponent {
     }
     this.comentariosService.borrar(comentario)
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /* console.log('result -> ', result); */
         setTimeout(() => {
           window.location.reload();
         }, 100);
@@ -102,17 +100,17 @@ export class ExperienciaIndividualComponent {
       usuario_id: this.userId,
       experiencia_id: this.id
     };
-    console.log('comentJSON -> ', coment);
+    /* console.log('comentJSON -> ', coment); */
     this.comentariosService.insertarComentario(coment)
       .subscribe({
         next: (response) => {
-          console.log('Comentario insertado correctamente:', response);
+          /* console.log('Comentario insertado correctamente:', response); */
           setTimeout(() => {
             window.location.reload();
           }, 100);
         },
         error: (error) => {
-          console.error('Error al insertar comentario:', error);
+          /* console.error('Error al insertar comentario:', error); */
         }
       });
   }
@@ -124,11 +122,11 @@ export class ExperienciaIndividualComponent {
     this.experienciaServ.borrarExperiencia(experiencia)
       .subscribe({
         next: (response) => {
-          console.log('Experiencia borrada correctamente:', response);
+          /* console.log('Experiencia borrada correctamente:', response); */
           this.router.navigate(['/experiencias']);
         },
         error: (error) => {
-          console.error('Error al borrar experiencia:', error);
+          /* console.error('Error al borrar experiencia:', error); */
         }
       });
   }

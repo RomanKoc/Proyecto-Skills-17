@@ -12,16 +12,12 @@ export class ComentariosService {
   retornar() {
     return this.http.get('http://127.0.0.1:8000/comentario/')
   }
-  /*   insertarComentario(comentario: any) {
-      return this.http.post('http://127.0.0.1:8000/comentario/new', comentario);
-    } */
 
   borrar(comentario: any) {
     return this.http.post('http://127.0.0.1:8000/comentario/borrar', comentario);
   }
 
   insertarComentario(comentario: any) {
-    console.log('llega al servicio');
     return this.http.post('http://127.0.0.1:8000/comentario/new', comentario);
   }
 
