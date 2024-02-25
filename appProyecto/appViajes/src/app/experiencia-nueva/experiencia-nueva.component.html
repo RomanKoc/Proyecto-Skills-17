@@ -1,7 +1,7 @@
 <div class="p-5">
     <form [formGroup]="formularioExperiencia" (ngSubmit)="registrarExperiencia()">
         <div class="contact-image">
-            <img src="../../assets/img/palm_128.png" alt="rocket_contact" />
+            <img src="../../assets/img/imgforms.png" alt="rocket_contact" />
         </div>
 
         <h3 class="text-center mt-2 mb-4" style="color: #fc624d;">Nueva Experiencia</h3>
@@ -13,10 +13,10 @@
                         [ngClass]="determinarInputs(formularioExperiencia.get('titulo'))" placeholder="Titulo"
                         formControlName="titulo">
                     @if(this.formularioExperiencia.get('titulo')?.errors?.['required']){}
-                    <label for="floatingTitulo">Titulo</label>
+                    <label for="floatingTitulo">Título</label>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-3 mt-md-0">
                 <div class="form-floating">
                     <input type="date" class="form-control"
                         [ngClass]="determinarInputs(formularioExperiencia.get('fecha'))" placeholder="Fecha"
