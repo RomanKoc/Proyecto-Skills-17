@@ -3,11 +3,12 @@ import { ApiPruebaService } from '../api-prueba.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import * as CryptoJS from 'crypto-js'; // Importar crypto-js
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,NgClass],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -21,14 +22,14 @@ export class LoginComponent {
   constructor(private usuarioService: ApiPruebaService, private router: Router) {
     this.usuarioService.retornar()
       .subscribe((result) => {
-        console.log('result -> ', result);
+        /*  console.log('result -> ', result); */
         this.usuarios = result
       });
   }
 
   formularioRegistro = new FormGroup({
-    mail: new FormControl(''),
-    password: new FormControl(''),
+    mail: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   /* cifrar el id del usuario para almacenarlo en localsotrage y usarlo de sesion */
@@ -42,7 +43,7 @@ export class LoginComponent {
     const passwordValue = this.formularioRegistro.value.password;
     if (passwordValue) {
       const passwordEncriptada = CryptoJS.SHA256(passwordValue).toString();
-      // Actualiza el valor del campo password en el formulario:
+      // Actualiza el valor del passwd en el formulario:
       this.formularioRegistro.patchValue({ password: passwordEncriptada });
     }
   }
@@ -57,43 +58,22 @@ export class LoginComponent {
         console.log('Usuario encontrado:', usuario);
         this.encriptarPasswd();
         const passwordDesencriptada = this.desencriptarPasswd(usuario.password);
-        
+
         if (this.formularioRegistro.value.password == passwordDesencriptada) {
           console.log('Usuario logeado correctamente');
           alert('Usuario logeado correctamente');
           this.id = usuario.id;
           localStorage.setItem('userId', this.id.toString());
-          
+
           this.router.navigate(['/']).then(() => {
             // Recargar la página
             window.location.reload();
-            return; // FALTABA ESTA MIERDA RETURN!!!!!
+            return;
           });
         }
       }
     });
   }
-  /* comprobarUsuario() {
-    this.usuarios.forEach((usuario: any) => {
-      if (usuario.mail === this.formularioRegistro.value.mail) {
-        console.log('Usuario encontrado:', usuario);
-        const passwordEncriptada = CryptoJS.SHA256(this.formularioRegistro.value.password || '').toString();
-        if (usuario.password === passwordEncriptada) {
-          console.log('Usuario logeado correctamente');
-          alert('Usuario logeado correctamente');
-          this.id = usuario.id;
-          localStorage.setItem('userId', this.id.toString());
-          this.router.navigate(['/']).then(() => {
-            window.location.reload();
-          });
-        } else {
-          console.log('Contraseña incorrecta');
-          alert('Contraseña incorrecta');
-        }
-      }
-    });
-  } */
-
 
   iniciarSesion() {
     this.encriptarPasswd();
@@ -103,5 +83,8 @@ export class LoginComponent {
 
   mostrarPassw() {
     this.tipoPasswd = (this.tipoPasswd === 'password') ? 'text' : 'password';
+  }
+  determinarInputs(inputControl: any) {
+    return inputControl.errors?.["required"] ? 'is-invalid' : 'is-valid';
   }
 }
