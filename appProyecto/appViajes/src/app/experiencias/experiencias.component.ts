@@ -84,6 +84,9 @@ export class ExperienciasComponent {
 
   }
 
-
+  generarIconosPuntuacion(puntuacion: string): any[] {
+    const puntuacionNumero = parseInt(puntuacion, 10);
+    return Array(puntuacionNumero).fill('');
+  }
 
 }

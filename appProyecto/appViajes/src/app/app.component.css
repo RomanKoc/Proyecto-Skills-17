@@ -150,3 +150,9 @@ footer{
     max-width: 20px; /* Ajusta el tamaño máximo según tus necesidades */
     max-height: 20px;
 }
+@media (min-width: 615px) {
+    .espaciado {
+      letter-spacing: 14px;
+      text-align: center;
+    }
+  }

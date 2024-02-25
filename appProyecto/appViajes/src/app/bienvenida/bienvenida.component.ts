@@ -79,5 +79,9 @@ export class BienvenidaComponent {
     this.experienciasImprir.push(mejorValorada);
     this.experienciasImprir.push(ultimaIngresada);
   }
+  generarIconosPuntuacion(puntuacion: string): any[] {
+    const puntuacionNumero = parseInt(puntuacion, 10);
+    return Array(puntuacionNumero).fill('');
+  }
 
 }

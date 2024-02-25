@@ -1,43 +1,52 @@
 @for (exp of experiencias; track $index) {
 @if (exp.id == id) {
-<div class="container mt-4 mb-4 ">
+<div class="container mt-4">
     <div class="row slider">
         <!--  d-flex justify-content-center -->
         <div class="col">
-            <h1>{{exp.titulo}}</h1>
+            <h1 class="mx-3 texto-con-sombra" style="color: #f78536;">{{exp.titulo}}</h1>
         </div>
     </div>
 </div>
-<div class="container mt-3 mb-3">
-    <div class="row slider mx-0 mx-sm-5">
+<div class="container mt-3">
+    <div class="row slider mx-0 mx-sm-4">
         <div class="col mx-2">
-            <p><i class="bi bi-pencil-fill"></i> {{exp.texto}}</p>
+            <p class="texto-grande"><i class="bi bi-pencil-fill" style="color: #18587a;"></i> {{exp.texto}}</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-person-lines-fill" style="color: #18587a;"></i> Publicado por <strong>{{exp.usuario.nombre}} </strong></p>
+            <p class="texto-grande"><i class="bi bi-calendar-date-fill" style="color: #18587a;"></i> {{exp.fecha}}</p>
         </div>
     </div>
 </div>
 
-<div class="container mt-3 mb-3">
-    <div class="row slider mx-0  mx-sm-5">
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
         <div class="col mx-2">
-            <p><i class="bi bi-crosshair"></i><strong> {{exp.localizacion.nombre}}</strong>,
+            <p class="texto-grande"><i class="bi bi-bullseye" style="color:#18587a;" ></i><strong> {{exp.localizacion.nombre}}</strong>,
                 {{exp.localizacion.provincia.nombre}}
-                ({{exp.localizacion.provincia.comunidad.nombre}}).</p>
+                ({{exp.localizacion.provincia.comunidad.nombre}})</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
+        <div class="col mx-2">
+            <p class="texto-grande"><i class="bi bi-crosshair" style="color: #18587a;"></i><strong> {{exp.categoria.nombre}}</strong>,
+                ({{exp.categoria.subcategoria.nombre}})</p>
         </div>
     </div>
 </div>
 
-<div class="container mt-3 mb-3">
-    <div class="row slider mx-0  mx-sm-5">
-        <div class="col mx-2">
-            <p><i class="bi bi-person-lines-fill"></i> Publicado por <strong>{{exp.usuario.nombre}} </strong></p>
-            <p><i class="bi bi-calendar-date-fill"></i> {{exp.fecha}}</p>
-        </div>
-    </div>
-</div>
-<div class="container mt-3 mb-3">
-    <div class="row slider mx-0  mx-sm-5">
+
+<div class="container mt-3">
+    <div class="row slider mx-0  mx-sm-4">
         <div class="col mx-2 d-flex justify-content-between">
-            <p><i class="bi bi-suit-heart-fill"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
+            <p class="texto-grande"><i class="bi bi-suit-heart-fill" style="color: #18587a;"></i> Puntuacion <strong>{{exp.puntuacion}} </strong></p>
             @if (exp.usuario.id == userId) {
             <button type="button" class="btn btn-primary" (click)="borrarExperiencia(exp.id)">Borrar
                 experiencia</button>
@@ -47,7 +56,7 @@
         </div>
     </div>
 </div>
-<div class="container mt-3 mb-3" id="carrusel">
+<div class="container mt-3" id="carrusel">
     <div class="row slider">
         @for (img of imagenes; track $index) {
         @if (img.experiencia_id == exp.id) {
@@ -86,7 +95,7 @@
 
 <div class="container mt-4 mb-5">
     <div class="row">
-        <h2 class="p-3">Comentarios de usuarios</h2>
+        <h2 class="p-3 texto-con-sombra-n">Comentarios de usuarios</h2>
         <div class="col-12">
             <div class="container contact-form p-3">
                 <form method="post" [formGroup]="formComent" (ngSubmit)="registrarComentario()">
@@ -95,10 +104,10 @@
                         <label for="floatingTexto">Añadir un comentario</label>
                         <div class="d-flex justify-content-end">
                             @if (desactivarPorID()) {
-                            <button class="btn mt-2 mb-3 " type="submit" style="background-color: #f78536;">Enviar
+                            <button class="btn mt-2 mb-3 " type="submit">Enviar
                                 comentario</button>
                             } @else {
-                            <button class="btn mt-2 mb-3" type="submit" style="background-color: #f78536;"
+                            <button class="btn mt-2 mb-3" type="submit"
                                 disabled>Enviar
                                 comentario</button>
                             }
@@ -110,17 +119,16 @@
         <hr>
         @for (coment of comentarios; track $index) {
         @if(coment.experiencia.id == exp.id){
-
-        <div class="col-10 col-sm-10 col-md-11 card mx-5">
+        <div class="col-10 col-sm-10 col-md-11 card mx-5 mt-2 mb-2">
             <div class="card-body">
                 <h5 class="card-title">{{coment.usuario.nombre}}</h5>
                 <p class="card-text">{{coment.texto}}</p>
                 <p class="card-text"><small class="text-muted">{{coment.fecha}}</small></p>
                 <div class="d-flex justify-content-end">
                     @if (coment.usuario.id == userId) {
-                    <button type="button" class="btn" (click)="borrarComentario(coment.id)">borrar coincide </button>
+                    <button type="button" class="btn" (click)="borrarComentario(coment.id)">Borrar comentario</button>
                     }@else {
-                    <button class="btn" disabled>borrar no coindice</button>
+                    <button class="btn" disabled>Borrar comentario</button>
                     }
                 </div>
             </div>

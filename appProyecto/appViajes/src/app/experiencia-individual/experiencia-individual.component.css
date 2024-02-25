@@ -14,3 +14,12 @@
     border-color: #fc624d;  
     transform: scale(1.05);
 }
+.texto-con-sombra {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* offsetX offsetY blurRadius color */
+}
+.texto-con-sombra-n {
+    text-shadow: 1px 1px 2px #ff895d; /* offsetX offsetY blurRadius color */
+}
+.texto-grande {
+    font-size: 1.1rem; /* Puedes ajustar este valor según tus necesidades */
+  }
