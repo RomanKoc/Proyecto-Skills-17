@@ -21,13 +21,6 @@ use App\Entity\Imagen;
 #[Route('/experiencia')]
 class ExperienciaController extends AbstractController
 {
-    /* #[Route('/', name: 'app_experiencia_index', methods: ['GET'])]
-    public function index(ExperienciaRepository $experienciaRepository): Response
-    {
-        return $this->render('experiencia/index.html.twig', [
-            'experiencias' => $experienciaRepository->findAll(),
-        ]);
-    } */
     #[Route('/', name: 'app_experiencia_index', methods: ['GET'])]
     public function index(ExperienciaRepository $experienciaRepository): JsonResponse
     {
@@ -75,26 +68,6 @@ class ExperienciaController extends AbstractController
         }
         return new JsonResponse($experienciasArray);
     }
-
-    /* #[Route('/new', name: 'app_experiencia_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $experiencium = new Experiencia();
-        $form = $this->createForm(ExperienciaType::class, $experiencium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($experiencium);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_experiencia_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('experiencia/new.html.twig', [
-            'experiencium' => $experiencium,
-            'form' => $form,
-        ]);
-    } */
     #[Route('/new', name: 'app_experiencia_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
@@ -213,31 +186,6 @@ class ExperienciaController extends AbstractController
             'experiencium' => $experiencium,
         ]);
     } */
-    #[Route('/{id}', name: 'app_experiencia_show', methods: ['GET'])]
-    public function show(Experiencia $experiencium): Response
-    {
-        return $this->render('experiencia/show.html.twig', [
-            'experiencium' => $experiencium,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_experiencia_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Experiencia $experiencium, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(ExperienciaType::class, $experiencium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_experiencia_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('experiencia/edit.html.twig', [
-            'experiencium' => $experiencium,
-            'form' => $form,
-        ]);
-    }
 
     #[Route('/borrar', name: 'app_experiencia_delete', methods: ['POST'])]
     public function delete(Request $request, EntityManagerInterface $entityManager): Response

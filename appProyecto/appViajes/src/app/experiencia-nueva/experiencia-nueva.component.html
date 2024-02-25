@@ -9,13 +9,20 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" placeholder="Titulo" formControlName="titulo">
+
+                    <input type="text" class="form-control"
+                        [ngClass]="determinarInputs(formularioExperiencia.get('titulo'))" placeholder="Titulo"
+                        formControlName="titulo">
+                    @if(this.formularioExperiencia.get('titulo')?.errors?.['required']){}
                     <label for="floatingTitulo">Titulo</label>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input type="date" class="form-control" placeholder="Fecha" formControlName="fecha">
+                    <input type="date" class="form-control"
+                        [ngClass]="determinarInputs(formularioExperiencia.get('fecha'))" placeholder="Fecha"
+                        formControlName="fecha">
+                    @if(this.formularioExperiencia.get('fecha')?.errors?.['required']){}
                     <label for="floatingFecha">Fecha</label>
                 </div>
             </div>
@@ -40,24 +47,29 @@
 
         <div class="row">
             <div class="col-md-6 mt-3">
+                <!-- EFECTOS VISUALES CON DATALIST NO VAN -->
+                @if(this.formularioExperiencia.get('localizacion')?.errors?.['required']){}
                 <input list="municipio" name="municipio" formControlName="localizacion" placeholder="Municipio"
                     style="width: 100%; height: 42px;">
                 <datalist id="municipio">
                     @for (item of localizaciones; track $index) {
                     <option value="{{item.nombre}}">{{item.nombre}}</option>
-                    <option value="fresa">fresa</option>
                     }
                 </datalist>
+
             </div>
             <div class="col-md-6 d-flex justify-content-center mt-3">
-                <input type="number" class="form-control" placeholder="Puntuacion" formControlName="puntuacion"
-                    style="width: 100%; height: 40px;" max="10" min="1">
+                <input type="number" class="form-control" placeholder="Puntuacion"
+                    formControlName="puntuacion" style="width: 100%; height: 40px;" max="10" min="1"
+                    [ngClass]="determinarInputs(formularioExperiencia.get('puntuacion'))">
+                @if(this.formularioExperiencia.get('puntuacion')?.errors?.['required']){}
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-floating mt-3">
-                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"></textarea>
+                    <textarea type="text" class="form-control" placeholder="Texto" formControlName="texto"
+                    [ngClass]="determinarInputs(formularioExperiencia.get('texto'))"></textarea>
                     <label for="floatingTexto">Texto</label>
                 </div>
             </div>
@@ -69,8 +81,8 @@
                 <input type="file" class="form-control" disabled multiple accept="image/png, image/jpeg, image/jpg">
             </div>
             <div class="col-md-6 d-flex justify-content-center mb-3">
-                <button class="btn btn-lg" type="submit"
-                    style="background-color: #f78536; width: 150px; height: 45px;">Entrar</button>
+                <button class="btn btn-lg" type="submit" style="background-color: #f78536; width: 150px; height: 45px;"
+                    [disabled]="formularioExperiencia.invalid">Entrar</button>
             </div>
         </div>
     </form>

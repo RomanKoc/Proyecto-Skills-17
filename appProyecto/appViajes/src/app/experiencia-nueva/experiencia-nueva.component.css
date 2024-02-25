@@ -33,3 +33,6 @@
 .falso{
     display: none;
 }
+.invalid input {
+    border-color: red;
+}
