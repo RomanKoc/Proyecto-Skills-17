@@ -54,7 +54,7 @@ export class ExperienciaNuevaComponent {
   }
 
   sacarIdLocalizacion(localizacionFORM: any) {
-    console.log('localizacionFORM -> ', localizacionFORM);
+    /* console.log('localizacionFORM -> ', localizacionFORM); */
     const localizacionEncontrada = this.localizaciones.find((local: any) => localizacionFORM == local.nombre);
     if (localizacionEncontrada) {
       return localizacionEncontrada.id;
@@ -67,7 +67,7 @@ export class ExperienciaNuevaComponent {
     let subcategoriaId: any = 1;
 
     if (this.formularioExperiencia.value.localizacion) {
-      idloc = this.sacarIdLocalizacion('loca' + this.formularioExperiencia.value.localizacion);
+      idloc = this.sacarIdLocalizacion(this.formularioExperiencia.value.localizacion);
     }
     if (this.formularioExperiencia.value.subcategoria) {
       subcategoriaId = this.formularioExperiencia.value.subcategoria;
