@@ -72,6 +72,8 @@ export class LoginComponent {
           }, 1200);
         }
 
+      }else{
+        this.alertaError();
       }
     });
   }
@@ -90,5 +92,8 @@ export class LoginComponent {
   }
   alertaSimple() {
     Swal.fire('Sesion iniciada correctamente', 'Bienvenido', 'success');
+  }
+  alertaError() {
+    Swal.fire('Error', 'Contraseña incorrecta', 'error');
   }
 }
